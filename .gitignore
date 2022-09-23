@@ -1,0 +1,5 @@
+.vscode
+a.out
+.DS_store
+*.o
+Cub3d
