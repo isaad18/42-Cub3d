@@ -30,15 +30,14 @@ typedef struct s_size
 {
 	int		win_x;
 	int		win_y;
-	double	img_x;
-	double	img_y;
+	double	Pl_x;
+	double	Pl_y;
 }		t_size;
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
-
 }		t_mlx;
 
 typedef struct s_all
