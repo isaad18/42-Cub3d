@@ -15,6 +15,7 @@ RS	= "\033[0m"
 #------------------- End Define Color ------------------#
 
 RCS	= ./Resources/Cub3d.c\
+./Resources/testing.c \
 
 OBJS	= $(RCS:.c=.o)
 

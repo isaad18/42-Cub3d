@@ -46,4 +46,8 @@ typedef struct s_all
 	t_mlx	*mlx;
 }			t_all;
 
+/*--------- Functions ---------*/
+void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all);
+void	mlx_main_loop(t_all *all, char *map[10]);
+
 #endif
