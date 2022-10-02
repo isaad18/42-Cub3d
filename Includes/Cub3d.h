@@ -32,6 +32,15 @@ typedef struct s_size
 	int		win_y;
 	double	Pl_x;
 	double	Pl_y;
+	double	mid_x;
+	double	mid_y;
+	double	ratio;
+	double	cam_x;
+	double	cam_y;
+	double	ray_x;
+	double	ray_y;
+	double	ray_x2;
+	double	ray_y2;
 }		t_size;
 
 typedef struct s_mlx
