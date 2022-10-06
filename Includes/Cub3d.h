@@ -14,6 +14,7 @@
 # include <fcntl.h>
 # include <termios.h>
 # include <math.h>
+# include <time.h>
 # include "../mlx/mlx.h"
 
 /*---------  Colors ---------*/
@@ -28,19 +29,34 @@
 /*--------- Structs ---------*/
 typedef struct s_size
 {
-	int		win_x;
-	int		win_y;
-	double	Pl_x;
-	double	Pl_y;
-	double	mid_x;
-	double	mid_y;
-	double	ratio;
-	double	cam_x;
-	double	cam_y;
-	double	ray_x;
-	double	ray_y;
-	double	ray_x2;
-	double	ray_y2;
+	double moveSpeed;
+	double rotSpeed;
+	double planeX;
+	double planeY;
+	double dirX;
+	double dirY;
+	double posX;
+	double posY;
+	int win_x;
+	int win_y;
+	double cameraX;
+	double rayDirX;
+	double rayDirY;
+	int mapX;
+	int mapY;
+	double sideDistX;
+	double sideDistY;
+	double deltaDistX;
+	double deltaDistY;
+	double perpWallDist;
+	int stepX;
+	int stepY;
+	int hit;
+	int side;
+	int lineHeight;
+	int drawStart;
+	int drawEnd;
+	long long int color;
 }		t_size;
 
 typedef struct s_mlx
@@ -53,10 +69,13 @@ typedef struct s_all
 {
 	t_size	*size;
 	t_mlx	*mlx;
+	char **map;
 }			t_all;
 
 /*--------- Functions ---------*/
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all);
 void	mlx_main_loop(t_all *all, char *map[10]);
+int		print_plz(t_all *all, char *map[10]);
+int print_plz(t_all *all, char *map[10]);
 
 #endif

@@ -7,8 +7,8 @@ int	main(int argc, char **argv)
 	t_size	size;
 	char	*map[10] = {"111111111111111111",
 						"100000000000000001",
-						"100000000100000001",
-						"100000000000000001",
+						"100000110011100001",
+						"100100000000001001",
 						"100000000P00000001",
 						"100000000000000001",
 						"100000000000000001",
@@ -19,5 +19,6 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	mlx_struct_init(&mlx, &size, &all);
+	all.map = map;
 	mlx_main_loop(&all, map);
 }
