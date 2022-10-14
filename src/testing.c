@@ -1,117 +1,11 @@
 #include "../Includes/Cub3d.h"
 
+
 int	closew(t_all *all)
 {
 	mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
 	exit(0);
 }
-
-// void	print_pixels(int color, t_all *all, int x, int y)
-// {
-// 	int i = y;
-// 	int j = x;
-
-// 	while (i < y + 50)
-// 	{
-// 		j = x;
-// 		while (j < x + 50)
-// 		{
-// 			mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, j, i, color);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
-// int	keys(int keycode, t_all *all)
-// {
-// 	if (keycode == 53)
-// 	{
-// 		mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
-// 		exit(0);
-// 	}
-// 	if (keycode == 0)
-// 	{
-// 		print_pixels(0x000000FF, all, all->size->Pl_x, all->size->Pl_y);
-// 		all->size->Pl_x--;
-// 		all->size->Pl_x--;
-// 		all->size->Pl_x--;
-// 		print_pixels(0x00F0FF0F, all, all->size->Pl_x, all->size->Pl_y);
-// 		print_pixels(0x00F0FF0F, all, all->size->Pl_x, all->size->Pl_y);
-// 	}
-// 	if (keycode == 13)
-// 	{
-// 		print_pixels(0x000000FF, all, all->size->Pl_x, all->size->Pl_y);
-// 		all->size->Pl_y--;
-// 		all->size->Pl_y--;
-// 		all->size->Pl_y--;
-// 		print_pixels(0x00F0FF0F, all, all->size->Pl_x, all->size->Pl_y);
-// 	}
-// 	if (keycode == 1)
-// 	{
-// 		print_pixels(0x000000FF, all, all->size->Pl_x, all->size->Pl_y);
-// 		all->size->Pl_y++;
-// 		all->size->Pl_y++;
-// 		all->size->Pl_y++;
-// 		print_pixels(0x00F0FF0F, all, all->size->Pl_x, all->size->Pl_y);
-// 	}
-// 	if (keycode == 2)
-// 	{
-// 		print_pixels(0x000000FF, all, all->size->Pl_x, all->size->Pl_y);
-// 		all->size->Pl_x++;
-// 		all->size->Pl_x++;
-// 		all->size->Pl_x++;
-// 		print_pixels(0x00F0FF0F, all, all->size->Pl_x, all->size->Pl_y);
-// 	}
-// 	return (3);
-// }
-
-// void	print_map(t_all *all, char *map[10])
-// {
-// 	int i = 0;
-// 	int j = 0;
-// 	int x = 0;
-// 	int y = 0;
-// 	while (map[i])
-// 	{
-// 		j = 0;
-// 		x = 0;
-// 		while (map[i][j])
-// 		{
-// 			if (map[i][j] == '1')
-// 				print_pixels(0x00FF0F0F, all, x, y);
-// 			else if (map[i][j] == '0')
-// 				print_pixels(0x000000FF, all, x, y);
-// 			else if (map[i][j] == 'P')
-// 			{
-// 				print_pixels(0x00F0FF0F, all, x, y);
-// 			}
-// 			j++;
-// 			x += 51;
-// 		}
-// 		y += 51;
-// 		i++;
-// 	}
-// }
-
-// void	print_ray_pixels(t_all *all, double counter, int new_mid)
-// {
-// 	double i = all->size->mid_y;
-// 	double pixels = (10000.00000 * (10.0000 / (counter * 277.0000)));
-
-// 	printf("%f\n", pixels);
-// 	while (i > all->size->mid_y - pixels)
-// 	{
-// 		mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, new_mid, i, 0x143A6F97);
-// 		i -= 0.5;
-// 	}
-// 	i = all->size->mid_y;
-// 	while (i < all->size->mid_y + pixels)
-// 	{
-// 		mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, new_mid, i, 0x143A6F97);
-// 		i += 0.5;
-// 	}
-// }
 
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 {
@@ -122,8 +16,8 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 	size->dirY = 0; //initial direction vector
 	size->planeX = 0;
 	size->planeY = 0.66; //the 2d raycaster version of camera plane
-	size->win_x = 640;
-	size->win_y = 480;
+	size->win_x = 540;
+	size->win_y = 380;
 	size->cameraX = 0;
 	size->rayDirX = 0;
 	size->rayDirY = 0;
@@ -143,51 +37,6 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 	size->drawEnd = 0;
 	all->size = size;
 }
-
-// double	get_dis(t_all *all, double x, double y)
-// {
-// 	double	dis;
-
-// 	dis = sqrt((((double)x - all->size->Pl_x) * ((double)x - all->size->Pl_x)) + (((double)y - all->size->Pl_y) * ((double)y - all->size->Pl_y)));
-// 	return (dis);
-// }
-
-// void	check_ray(t_all *all, char *map[10], int new_mid)
-// {
-// 	double x = all->size->Pl_x;
-// 	double y = all->size->Pl_y;
-// 	int counter = 0;
-
-// 	while (map[(int)y][(int)x] != '1')
-// 	{
-// 		x += (all->size->temp_x / 10.000);
-// 		y += (all->size->temp_y / 10.000);
-// 		counter++;
-// 	}
-// 	print_ray_pixels(all, get_dis(all, (double)x, (int)y), new_mid);
-// }
-
-// void	print_3d(t_all *all, char *map[10])
-// {
-// 	while (all->size->temp_x < 0.6666)
-// 	{
-// 		check_ray(all, map, all->size->mid_x);
-// 		all->size->temp_x += all->size->ray_x;
-// 		all->size->temp_y += all->size->ray_y;
-// 		all->size->mid_x += 0.5;
-// 	}
-// 	all->size->temp_x = all->size->cam_x;
-// 	all->size->temp_y = all->size->cam_y;
-// 	all->size->mid_x = all->size->win_x / 2;
-// 	all->size->ray_x *= -1;
-// 	while (all->size->temp_x > -0.6666)
-// 	{
-// 		all->size->temp_x += all->size->ray_x;
-// 		all->size->temp_y += all->size->ray_y;
-// 		all->size->mid_x -= 0.5;
-// 		check_ray(all, map, all->size->mid_x);
-// 	}
-// }
 
 int	key(int keycode, t_all *all)
 {
@@ -239,6 +88,37 @@ int	key(int keycode, t_all *all)
 	return (0);
 }
 
+void	prinnt_bg(t_all *all)
+{
+	int	mid_y;
+	int	x;
+
+	mid_y = all->size->win_y / 2;
+	x = 0;
+	while (x < all->size->win_x)
+	{
+		mid_y = all->size->win_y / 2;
+		while (mid_y > 0)
+		{
+			mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, x, mid_y, 0x0000F0FF);
+			mid_y--;
+		}
+		x++;
+	}
+	mid_y = all->size->win_y / 2;
+	x = 0;
+	while (x < all->size->win_x)
+	{
+		mid_y = all->size->win_y / 2;
+		while (mid_y < all->size->win_y)
+		{
+			mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, x, mid_y, 0x000FFF00);
+			mid_y++;
+		}
+		x++;
+	}
+}
+
 void	mlx_main_loop(t_all *all, char *map[10])
 {
 	(void)map;
@@ -252,11 +132,45 @@ void	mlx_main_loop(t_all *all, char *map[10])
 
 void	verline(t_all *all, double x, double start, double end, long long int color)
 {
-	printf("%f     %f\n", start, end);
+	int	i;
+
+	i = 0;
+	while (i < start)
+	{
+		mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, x, i, 0x0000F0FF);
+		i++;
+	}
 	while (start < end)
 	{
 		mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, x, start, color);
 		start++;
+	}
+	i = end + 1;
+	while (i < all->size->win_y)
+	{
+		mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, x, i, 0x000FFF00);
+		i++;
+	}
+}
+
+void	drawall(t_all *all, int buffer[380][540])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+	while (i < all->size->win_x)
+	{
+		j = 0;
+		while (j < all->size->win_y)
+		{
+			if (buffer[j][i] != 0)
+				mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, i, j, buffer[j][i]);
+			j++;
+		}
+		i++;
 	}
 }
 
@@ -266,6 +180,22 @@ int print_plz(t_all *all, char *map[10])
   double oldTime = 0; //time of previous frame
 
 	time = clock();
+	int	text[64 * 64];
+	for (int x = 0; x < 64; x++){
+		for (int y = 0; y < 64; y++){
+			text[64 * y + x] = 65536 * 192 * (x % 16 && y % 16);
+		}
+	}
+	// text = mlx_new_image(all->mlx->mlx, 64, 64);
+	// int w;
+	// int h;
+	// text = mlx_png_file_to_image(all->mlx->mlx, "../Imgs/greystone.png", &w, &h);
+	int buffer[all->size->win_y][all->size->win_x];
+	for (int y = 0; y < 64; y++){
+		for (int x = 0; x < 64; x++){
+			buffer[y][x] = 0;
+		}
+	}
 	for (int x = 0; x < all->size->win_x/* W here */; x++)
 	{
 	  //calculate ray position and direction
@@ -358,19 +288,48 @@ int print_plz(t_all *all, char *map[10])
 	  int drawEnd = lineHeight / 2 + all->size->win_y/* H here */ / 2;
 	  if(drawEnd >= all->size->win_y/* H here */) drawEnd = all->size->win_y/* H here */ - 1;
 
-	  //choose wall color
-	  long long int color;
-		if (map[all->size->mapX][all->size->mapY] == '1')
-			color = 0x143A6F97;
-		else
-			color = 0;
+		// int texNum = map[all->size->mapX][all->size->mapY] - 1; //1 subtracted from it so that texture 0 can be used!
 
-	  //give x and y sides different brightness
-	//   if(side == 1) {color = color / 2;}
+      //calculate value of wallX
+      double wallX; //where exactly the wall was hit
+      if(all->size->side == '0') wallX = all->size->posY + all->size->perpWallDist * all->size->rayDirY;
+      else          wallX = all->size->posX + all->size->perpWallDist * all->size->rayDirX;
+      wallX -= floor((wallX));
 
-	  //draw the pixels of the stripe as a vertical line
-		verline(all, x, drawStart, drawEnd, color); //draw here
+      //x coordinate on the texture
+      int texX = (int)wallX * (double)64;
+      texX = 64 - texX - 1;
+
+      // TODO: an integer-only bresenham or DDA like algorithm could make the texture coordinate stepping faster
+      // How much to increase the texture coordinate per screen pixel
+      double step = 1.0 * 64 / lineHeight;
+      // Starting texture coordinate
+    	double texPos = (drawStart    - all->size->win_y / 2 + lineHeight / 2) * step;
+		for(int y = drawStart; y < drawEnd; y++)
+		{
+			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+			int texY = (int)texPos & (64 - 1);
+			texPos += step;
+			int color = text[64 * texY + texX];
+			//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+			buffer[y][x] = color;
+			}
+			for(int y = 0; y < drawStart; y++)
+			{
+			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+			//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+			// if(all->size->side == 1) color = (color >> 1) & 8355711;
+			buffer[y][x] = 0x87CEEB;
+			}
+			for(int y = drawEnd; y < all->size->win_y; y++)
+			{
+			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+			//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+			// if(all->size->side == 1) color = (color >> 1) & 8355711;
+			buffer[y][x] = 0x964B00;
+		}
 	}
+	drawall(all, buffer);
 	//timing for input and FPS counter
 	oldTime = time;
 	time = clock();
@@ -382,44 +341,6 @@ int print_plz(t_all *all, char *map[10])
 	//speed modifiers
 	all->size->moveSpeed = frameTime * 5.0; //the constant value is in squares/second
 	all->size->rotSpeed = frameTime * 3.0; //the constant value is in radians/second
-
-
-	//moving part
-	//move forward if no wall in front of you
-	// readKeys();
-	// if(keyDown(SDLK_UP))
-	// {
-	//   if(map[(int)(posX + dirX * moveSpeed)][(int)(posY)] == false) posX += dirX * moveSpeed;
-	//   if(map[(int)(posX)][(int)(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
-	// }
-	// //move backwards if no wall behind you
-	// if(keyDown(SDLK_DOWN))
-	// {
-	//   if(map[(int)(posX - dirX * moveSpeed)][(int)(posY)] == false) posX -= dirX * moveSpeed;
-	//   if(map[(int)(posX)][(int)(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
-	// }
-	// //rotate to the right
-	// if(keyDown(SDLK_RIGHT))
-	// {
-	//   //both camera direction and camera plane must be rotated
-	//   double oldDirX = dirX;
-	//   dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-	//   dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-	//   double oldPlaneX = planeX;
-	//   planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-	//   planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
-	// }
-	// //rotate to the left
-	// if(keyDown(SDLK_LEFT))
-	// {
-	//   //both camera direction and camera plane must be rotated
-	//   double oldDirX = dirX;
-	//   dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-	//   dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-	//   double oldPlaneX = planeX;
-	//   planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-	//   planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
-	// }
 
 	return 0;
 }
