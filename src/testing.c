@@ -157,21 +157,32 @@ void	drawall(t_all *all, int buffer[380][540])
 {
 	int	i;
 	int	j;
+	int	w;
+	int	b;
+	int	h;
+	void	*img;
+	int	*texture;
 
 	i = 0;
 	j = 0;
 	mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
-	while (i < all->size->win_x)
+	img = mlx_new_image(all->mlx->mlx, all->size->win_x, all->size->win_y);
+	texture = (int *)mlx_get_data_addr(img, &b, &w, &h);
+	(void)texture;
+	while (j < all->size->win_y)
 	{
-		j = 0;
-		while (j < all->size->win_y)
+		i = 0;
+		while (i < all->size->win_x)
 		{
-			if (buffer[j][i] != 0)
-				mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, i, j, buffer[j][i]);
-			j++;
+			(void)buffer;
+			// if (buffer[j][i] != 0)
+			// 	mlx_pixel_put(all->mlx->mlx, all->mlx->mlx_win, i, j, buffer[j][i]);
+			texture[j * all->size->win_x + i] = buffer[j][i];
+			i++;
 		}
-		i++;
+		j++;
 	}
+	mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, img, 0, 0);
 }
 
 int print_plz(t_all *all, char *map[10])
@@ -180,22 +191,29 @@ int print_plz(t_all *all, char *map[10])
   double oldTime = 0; //time of previous frame
 
 	time = clock();
-	int	text[64 * 64];
-	for (int x = 0; x < 64; x++){
-		for (int y = 0; y < 64; y++){
-			text[64 * y + x] = 65536 * 192 * (x % 16 && y % 16);
-		}
-	}
-	// text = mlx_new_image(all->mlx->mlx, 64, 64);
-	// int w;
-	// int h;
+	int ii = 0;
+	// int	text[64 * 64];
+	int	*text;
+	void	*tex;
+	int texX;
+	// for (int x = 0; x < 64; x++){
+	// 	for (int y = 0; y < 64; y++){
+	// 		text[64 * y + x] = 65536 * 192 * (x % 16 && y % 16);
+	// 	}
+	// }
+	int w = 0;
+	int h = 0;
+	int b = 0;
+	tex = mlx_xpm_file_to_image(all->mlx->mlx, "/Users/isaad/Desktop/42-Cub3d/Imgs/new.xpm", &w, &h);
+	// if (!tex)
+	// {
+	// 	printf("Error loading");
+	// 	return 0;
+	// }
+	// text = mlx_new_image(all->mlx->mlx, 640, 640);
+	text = (int *)mlx_get_data_addr(tex, &b, &h, &w);
 	// text = mlx_png_file_to_image(all->mlx->mlx, "../Imgs/greystone.png", &w, &h);
 	int buffer[all->size->win_y][all->size->win_x];
-	for (int y = 0; y < 64; y++){
-		for (int x = 0; x < 64; x++){
-			buffer[y][x] = 0;
-		}
-	}
 	for (int x = 0; x < all->size->win_x/* W here */; x++)
 	{
 	  //calculate ray position and direction
@@ -297,20 +315,35 @@ int print_plz(t_all *all, char *map[10])
       wallX -= floor((wallX));
 
       //x coordinate on the texture
-      int texX = (int)wallX * (double)64;
-      texX = 64 - texX - 1;
+	  if (ii == 0)
+	  {
+	      texX = (int)wallX * (double)64;
+	    //   texX = 64 - texX - 1;
+		  ii++;
+	  }
+	  else if (ii == 64)
+	  {
+	      texX = (int)wallX * (double)64;
+		  ii = 0;
+	    // texX = 64 - texX - 1;
+	  }
+	  else if (ii)
+	  {
+		  texX++;
+		  ii++;
+	  }
 
       // TODO: an integer-only bresenham or DDA like algorithm could make the texture coordinate stepping faster
       // How much to increase the texture coordinate per screen pixel
       double step = 1.0 * 64 / lineHeight;
       // Starting texture coordinate
-    	double texPos = (drawStart    - all->size->win_y / 2 + lineHeight / 2) * step;
+    	double texPos = (drawStart - all->size->win_y / 2 + lineHeight / 2) * step;
 		for(int y = drawStart; y < drawEnd; y++)
 		{
 			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
 			int texY = (int)texPos & (64 - 1);
 			texPos += step;
-			int color = text[64 * texY + texX];
+			int color = mlx_get_color_value(all->mlx->mlx, text[(64 * texY) + texX]);
 			//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 			buffer[y][x] = color;
 			}
@@ -333,7 +366,7 @@ int print_plz(t_all *all, char *map[10])
 	//timing for input and FPS counter
 	oldTime = time;
 	time = clock();
-	double frameTime = (time - oldTime) / 5009000.0; //frameTime is the time this frame has taken, in seconds
+	double frameTime = (time - oldTime) / 500900.0; //frameTime is the time this frame has taken, in seconds
 	// print(1.0 / frameTime); //FPS counter
 	// redraw();
 	// cls();
