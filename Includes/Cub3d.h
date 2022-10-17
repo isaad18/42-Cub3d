@@ -56,6 +56,7 @@ typedef struct s_size
 	int lineHeight;
 	int drawStart;
 	int drawEnd;
+	int	updown;
 	long long int color;
 }		t_size;
 

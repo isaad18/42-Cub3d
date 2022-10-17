@@ -32,6 +32,7 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 	size->stepY = 0;
 	size->hit = 0;
 	size->side = 0;
+	size->updown = 0;
 	size->lineHeight = 0;
 	size->drawStart = 0;
 	size->drawEnd = 0;
@@ -60,7 +61,7 @@ int	key(int keycode, t_all *all)
 		print_plz(all, all->map);
 	}
 	//rotate to the right
-	if(keycode == 2)
+	if(keycode == 124)
 	{
 		//both camera direction and camera plane must be rotated
 		double oldDirX = all->size->dirX;
@@ -73,7 +74,7 @@ int	key(int keycode, t_all *all)
 		print_plz(all, all->map);
 	}
 	//rotate to the left
-	if(keycode == 0)
+	if(keycode == 123)
 	{
 		//both camera direction and camera plane must be rotated
 		double oldDirX = all->size->dirX;
@@ -119,6 +120,54 @@ void	prinnt_bg(t_all *all)
 	}
 }
 
+int	mouse(int x, int y, t_all *all)
+{
+	(void)y;
+	static int xx;
+	static int yy;
+	if (y > yy && (y < all->size->win_y && y > 0) && (x < all->size->win_x && x > 0))
+	{
+		all->size->updown--;
+		all->size->updown--;
+		all->size->updown--;
+		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+		print_plz(all, all->map);
+	}
+	if (y < yy && (y < all->size->win_y && y > 0) && (x < all->size->win_x && x > 0))
+	{
+		all->size->updown++;
+		all->size->updown++;
+		all->size->updown++;
+		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+		print_plz(all, all->map);
+	}
+	if (x > xx && (x < all->size->win_x && x > 0) && (y < all->size->win_y && y > 0))
+	{
+		double oldDirX = all->size->dirX;
+		all->size->dirX = all->size->dirX * cos(-all->size->rotSpeed) - all->size->dirY * sin(-all->size->rotSpeed);
+		all->size->dirY = oldDirX * sin(-all->size->rotSpeed) + all->size->dirY * cos(-all->size->rotSpeed);
+		double oldPlaneX = all->size->planeX;
+		all->size->planeX = all->size->planeX * cos(-all->size->rotSpeed) - all->size->planeY * sin(-all->size->rotSpeed);
+		all->size->planeY = oldPlaneX * sin(-all->size->rotSpeed) + all->size->planeY * cos(-all->size->rotSpeed);
+		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+		print_plz(all, all->map);
+	}
+	if (x < xx && x > 0 && (y < all->size->win_y && y > 0) && (x < all->size->win_x && x > 0))
+	{
+		double oldDirX = all->size->dirX;
+		all->size->dirX = all->size->dirX * cos(all->size->rotSpeed) - all->size->dirY * sin(all->size->rotSpeed);
+		all->size->dirY = oldDirX * sin(all->size->rotSpeed) + all->size->dirY * cos(all->size->rotSpeed);
+		double oldPlaneX = all->size->planeX;
+		all->size->planeX = all->size->planeX * cos(all->size->rotSpeed) - all->size->planeY * sin(all->size->rotSpeed);
+		all->size->planeY = oldPlaneX * sin(all->size->rotSpeed) + all->size->planeY * cos(all->size->rotSpeed);
+		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+		print_plz(all, all->map);
+	}
+	xx = x;
+	yy = y;
+	return (0);
+}
+
 void	mlx_main_loop(t_all *all, char *map[10])
 {
 	(void)map;
@@ -126,6 +175,7 @@ void	mlx_main_loop(t_all *all, char *map[10])
 	all->mlx->mlx_win = mlx_new_window(all->mlx->mlx, all->size->win_x, all->size->win_y, "Cub3d");
 	print_plz(all, map);
 	mlx_hook(all->mlx->mlx_win, 2, 1L<<0, key, all);
+	mlx_hook(all->mlx->mlx_win, 6, 1L<<6, mouse, all);
 	mlx_hook(all->mlx->mlx_win, 17, 1L<<5, closew, all);
 	mlx_loop(all->mlx->mlx);
 }
@@ -153,7 +203,7 @@ void	verline(t_all *all, double x, double start, double end, long long int color
 	}
 }
 
-void	drawall(t_all *all, int buffer[380][540])
+void	drawall(t_all *all, int **buffer)
 {
 	int	i;
 	int	j;
@@ -227,7 +277,14 @@ int print_plz(t_all *all, char *map[10])
 	tex2 = mlx_xpm_file_to_image(all->mlx->mlx, "/Users/isaad/Desktop/42-Cub3d/Imgs/new1.xpm", &w, &h);
 	text2 = (int *)mlx_get_data_addr(tex2, &b, &h, &w);
 	// text = mlx_png_file_to_image(all->mlx->mlx, "../Imgs/greystone.png", &w, &h);
-	int buffer[all->size->win_y][all->size->win_x];
+	int **buffer;
+	buffer = malloc(sizeof(int *) * all->size->win_y);
+	int xx = 0;
+	while (xx < all->size->win_y)
+	{
+		buffer[xx] = malloc(sizeof(int) * all->size->win_x);
+		xx++;
+	}
 	for (int x = 0; x < all->size->win_x/* W here */; x++)
 	{
 	//   mapX = (int)all->size->mapX;
@@ -317,9 +374,9 @@ int print_plz(t_all *all, char *map[10])
 	  int lineHeight = (int)(all->size->win_y/* H here */ / all->size->perpWallDist);
 
 	  //calculate lowest and highest pixel to fill in current stripe
-	  int drawStart = -lineHeight / 2 + all->size->win_y/* H here */ / 2;
+	  int drawStart = -lineHeight / 2 + ((all->size->win_y/* H here */ / 2) + all->size->updown);
 	  if(drawStart < 0) drawStart = 0;
-	  int drawEnd = lineHeight / 2 + all->size->win_y/* H here */ / 2;
+	  int drawEnd = lineHeight / 2 + ((all->size->win_y/* H here */ / 2) + all->size->updown);
 	  if(drawEnd >= all->size->win_y/* H here */) drawEnd = all->size->win_y/* H here */ - 1;
 
 		// int texNum = map[all->size->mapX][all->size->mapY] - 1; //1 subtracted from it so that texture 0 can be used!
@@ -360,7 +417,7 @@ int print_plz(t_all *all, char *map[10])
       // How much to increase the texture coordinate per screen pixel
       double step = 1.0 * 64 / lineHeight;
       // Starting texture coordinate
-    	double texPos = (drawStart - all->size->win_y / 2 + lineHeight / 2) * step;
+    	double texPos = (drawStart - ((all->size->win_y / 2) + all->size->updown) + lineHeight / 2) * step;
 		for(int y = drawStart; y < drawEnd; y++)
 		{
 			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
@@ -374,21 +431,48 @@ int print_plz(t_all *all, char *map[10])
 			// make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 			// if(all->size->side == 1) color = (color >> 1) & 8355711;
 			buffer[y][x] = color;
-			}
+		}
 			for(int y = 0; y < drawStart; y++)
 			{
+				if (drawStart < 0 || drawStart > drawEnd)
+					break;
 			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
 			//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 			// if(all->size->side == 1) color = (color >> 1) & 8355711;
 			buffer[y][x] = 0x87CEEB;
-			}
-			for(int y = drawEnd; y < all->size->win_y; y++)
-			{
+		}
+		for(int y = drawEnd; y < all->size->win_y; y++)
+		{
+			if (drawEnd < 0 || drawEnd < drawStart)
+				break;
 			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
 			//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
 			buffer[y][x] = 0x964B00;
 		}
+		int j = 0;
+		while (j < all->size->win_y)
+		{
+			if (buffer[j][x] == 0 && all->size->updown > 0 && (j < drawStart || j > drawEnd))
+				buffer[j][x] = 0x87CEEB;
+			if (buffer[j][x] == 0 && all->size->updown < 0 && (j < drawStart || j > drawEnd))
+				buffer[j][x] = 0x964B00;
+			j++;
+		}
 	}
+	// int i = 0;
+	// while (i < all->size->win_y)
+	// {
+	// 	j = 0;
+	// 	while (j < all->size->win_x)
+	// 	{
+	// 		if (buffer[i][j] == 0 && all->size->updown > 0)
+	// 			buffer[i][j] = 0x87CEEB;
+	// 		if (buffer[i][j] == 0 && all->size->updown < 0)
+	// 			buffer[i][j] = 0x964B00;
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 	drawall(all, buffer);
 	//timing for input and FPS counter
 	oldTime = time;
