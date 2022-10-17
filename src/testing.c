@@ -10,8 +10,8 @@ int	closew(t_all *all)
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 {
 	all->mlx = mlx;
-	size->posX = 4;
-	size->posY = 9;  //x and y start position
+	size->posX = 5;
+	size->posY = 14;  //x and y start position
 	size->dirX = -1;
 	size->dirY = 0; //initial direction vector
 	size->planeX = 0;
@@ -185,17 +185,26 @@ void	drawall(t_all *all, int buffer[380][540])
 	mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, img, 0, 0);
 }
 
+// double	flor(double x)
+// {
+// 	x = (double)x - (int)x;
+// 	return ((double)x);
+// }
+
 int print_plz(t_all *all, char *map[10])
 {
   double time = 0; //time of current frame
   double oldTime = 0; //time of previous frame
 
 	time = clock();
-	int ii = 0;
+	// int ii = 0;
 	// int	text[64 * 64];
 	int	*text;
 	void	*tex;
+	int	*text2;
+	void	*tex2;
 	int texX;
+	int texY;
 	// for (int x = 0; x < 64; x++){
 	// 	for (int y = 0; y < 64; y++){
 	// 		text[64 * y + x] = 65536 * 192 * (x % 16 && y % 16);
@@ -204,18 +213,25 @@ int print_plz(t_all *all, char *map[10])
 	int w = 0;
 	int h = 0;
 	int b = 0;
-	tex = mlx_xpm_file_to_image(all->mlx->mlx, "/Users/isaad/Desktop/42-Cub3d/Imgs/new.xpm", &w, &h);
+	int ii = 0;
+	// int mapX = 0;
+	// int mapY = 0;
 	// if (!tex)
 	// {
 	// 	printf("Error loading");
 	// 	return 0;
 	// }
 	// text = mlx_new_image(all->mlx->mlx, 640, 640);
+	tex = mlx_xpm_file_to_image(all->mlx->mlx, "/Users/isaad/Desktop/42-Cub3d/Imgs/new2.xpm", &w, &h);
 	text = (int *)mlx_get_data_addr(tex, &b, &h, &w);
+	tex2 = mlx_xpm_file_to_image(all->mlx->mlx, "/Users/isaad/Desktop/42-Cub3d/Imgs/new1.xpm", &w, &h);
+	text2 = (int *)mlx_get_data_addr(tex2, &b, &h, &w);
 	// text = mlx_png_file_to_image(all->mlx->mlx, "../Imgs/greystone.png", &w, &h);
 	int buffer[all->size->win_y][all->size->win_x];
 	for (int x = 0; x < all->size->win_x/* W here */; x++)
 	{
+	//   mapX = (int)all->size->mapX;
+	//   mapY = (int)all->size->mapY;
 	  //calculate ray position and direction
 	  all->size->cameraX = 2 * x / (double)all->size->win_x/* W here */ - 1; //x-coordinate in camera space
 	  all->size->rayDirX = all->size->dirX + all->size->planeX * all->size->cameraX;
@@ -310,28 +326,35 @@ int print_plz(t_all *all, char *map[10])
 
       //calculate value of wallX
       double wallX; //where exactly the wall was hit
-      if(all->size->side == '0') wallX = all->size->posY + all->size->perpWallDist * all->size->rayDirY;
-      else          wallX = all->size->posX + all->size->perpWallDist * all->size->rayDirX;
-      wallX -= floor((wallX));
-
+      if(all->size->side == 0) {wallX = all->size->posY + all->size->perpWallDist * all->size->rayDirY; ii = 1;}
+      else      {wallX = all->size->posX + all->size->perpWallDist * all->size->rayDirX; ii = 2;}
       //x coordinate on the texture
-	  if (ii == 0)
-	  {
-	      texX = (int)wallX * (double)64;
-	    //   texX = 64 - texX - 1;
-		  ii++;
-	  }
-	  else if (ii == 64)
-	  {
-	      texX = (int)wallX * (double)64;
-		  ii = 0;
+	//   if (ii == 0)
+	//   {
+		int iii = (int)wallX;
+    	wallX = (double)wallX - (int)iii;
+	    texX = (int)(wallX * (double)64);
 	    // texX = 64 - texX - 1;
-	  }
-	  else if (ii)
-	  {
-		  texX++;
-		  ii++;
-	  }
+		if(all->size->side == 0 && all->size->rayDirX > 0) {texX = 64 - texX - 1;}
+      	if(all->size->side == 1 && all->size->rayDirY < 0) {texX = 64 - texX - 1;}
+	// 	  ii++;
+	//   }
+	//   else if (mapX != (int)all->size->mapX || mapY != (int)all->size->mapY)
+	//   {
+	//       texX = (int)wallX * (double)64;
+	// 	  ii = 0;
+	//   }
+	//   else if (ii == 64)
+	//   {
+	//       texX = (int)wallX * (double)64;
+	// 	  ii = 0;
+	//     // texX = 64 - texX - 1;
+	//   }
+	//   else if (ii)
+	//   {
+	// 	  texX++;
+	// 	  ii++;
+	//   }
 
       // TODO: an integer-only bresenham or DDA like algorithm could make the texture coordinate stepping faster
       // How much to increase the texture coordinate per screen pixel
@@ -341,10 +364,15 @@ int print_plz(t_all *all, char *map[10])
 		for(int y = drawStart; y < drawEnd; y++)
 		{
 			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-			int texY = (int)texPos & (64 - 1);
+			texY = (int)texPos & (64 - 1);
 			texPos += step;
-			int color = mlx_get_color_value(all->mlx->mlx, text[(64 * texY) + texX]);
-			//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+			int color;
+			if (ii == 1)
+				color = mlx_get_color_value(all->mlx->mlx, text[(64 * texY) + texX]);
+			else
+				color = mlx_get_color_value(all->mlx->mlx, text2[(64 * texY) + texX]);
+			// make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+			// if(all->size->side == 1) color = (color >> 1) & 8355711;
 			buffer[y][x] = color;
 			}
 			for(int y = 0; y < drawStart; y++)
@@ -358,7 +386,6 @@ int print_plz(t_all *all, char *map[10])
 			{
 			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
 			//make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
-			// if(all->size->side == 1) color = (color >> 1) & 8355711;
 			buffer[y][x] = 0x964B00;
 		}
 	}
