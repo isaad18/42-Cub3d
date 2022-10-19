@@ -52,6 +52,20 @@ int	key(int keycode, t_all *all)
 		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
 		print_plz(all, all->map);
 	}
+	if(keycode == 0)
+	{
+		if(all->map[(int)(all->size->posX + all->size->dirY * all->size->moveSpeed)][(int)(all->size->posY)] != '1') all->size->posX -= all->size->dirY * all->size->moveSpeed;
+		if(all->map[(int)(all->size->posX)][(int)(all->size->posY + all->size->dirX * all->size->moveSpeed)] != '1') all->size->posY += all->size->dirX * all->size->moveSpeed;
+		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+		print_plz(all, all->map);
+	}
+	if(keycode == 2)
+	{
+		if(all->map[(int)(all->size->posX + all->size->dirY * all->size->moveSpeed)][(int)(all->size->posY)] != '1') all->size->posX += all->size->dirY * all->size->moveSpeed;
+		if(all->map[(int)(all->size->posX)][(int)(all->size->posY - all->size->dirX * all->size->moveSpeed)] != '1') all->size->posY -= all->size->dirX * all->size->moveSpeed;
+		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+		print_plz(all, all->map);
+	}
 	if(keycode == 1)
 	{
 		if(all->map[(int)(all->size->posX - all->size->dirX * all->size->moveSpeed)][(int)(all->size->posY)] != '1') all->size->posX -= all->size->dirX * all->size->moveSpeed;
