@@ -191,9 +191,9 @@ int print_plz(t_all *all, char *map[10])
 	int h = 0;
 	int b = 0;
 	int ii = 0;
-	tex = mlx_xpm_file_to_image(all->mlx->mlx, "/Users/isaad/Desktop/42-Cub3d/Imgs/new2.xpm", &w, &h);
+	tex = mlx_xpm_file_to_image(all->mlx->mlx, "Imgs/new2.xpm", &w, &h);
 	text = (int *)mlx_get_data_addr(tex, &b, &h, &w);
-	tex2 = mlx_xpm_file_to_image(all->mlx->mlx, "/Users/isaad/Desktop/42-Cub3d/Imgs/new1.xpm", &w, &h);
+	tex2 = mlx_xpm_file_to_image(all->mlx->mlx, "Imgs/new1.xpm", &w, &h);
 	text2 = (int *)mlx_get_data_addr(tex2, &b, &h, &w);
 	int **buffer;
 	buffer = malloc(sizeof(int *) * all->size->win_y);
