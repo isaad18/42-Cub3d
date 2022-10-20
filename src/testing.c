@@ -109,11 +109,17 @@ int	mouse(int x, int y, t_all *all)
 		all->size->updown--;
 		all->size->updown--;
 		all->size->updown--;
+		all->size->updown--;
+		all->size->updown--;
+		all->size->updown--;
 		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
 		print_plz(all, all->map);
 	}
 	if (y < yy && (y < all->size->win_y && y > 0) && (x < all->size->win_x && x > 0))
 	{
+		all->size->updown++;
+		all->size->updown++;
+		all->size->updown++;
 		all->size->updown++;
 		all->size->updown++;
 		all->size->updown++;
@@ -191,10 +197,6 @@ void	drawall(t_all *all, int **buffer)
 
 int print_plz(t_all *all, char *map[10])
 {
-	double time = 0;
-	double oldTime = 0;
-
-	time = clock();
 	int	*text;
 	void	*tex;
 	int	*text2;
@@ -340,10 +342,7 @@ int print_plz(t_all *all, char *map[10])
 
 
 	drawall(all, buffer);
-	oldTime = time;
-	time = clock();
-	double frameTime = (time - oldTime) / 500900.0;
-	all->size->moveSpeed = frameTime * 5.0;
-	all->size->rotSpeed = frameTime * 3.0;
+	all->size->moveSpeed = 0.1;
+	all->size->rotSpeed = 0.055;
 	return (0);
 }
