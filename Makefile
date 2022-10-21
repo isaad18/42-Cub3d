@@ -16,6 +16,11 @@ RS	= "\033[0m"
 
 RCS	= ./src/Cub3d.c\
 ./src/testing.c \
+./src/keys.c \
+./src/keys1.c \
+./src/drawHelper.c \
+./src/init.c \
+./src/MKcmd.c
 
 OBJS	= $(RCS:.c=.o)
 
