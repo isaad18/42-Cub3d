@@ -29,6 +29,7 @@
 /*--------- Structs ---------*/
 typedef struct s_size
 {
+	int	where;
 	double moveSpeed;
 	double rotSpeed;
 	double planeX;
@@ -57,13 +58,28 @@ typedef struct s_size
 	int drawStart;
 	int drawEnd;
 	int	updown;
-	long long int color;
+	int color;
+	double texPos;
+	double step;
+	double wallX;
 }		t_size;
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
+	int drawEnd;
+	int drawStart;
+	int lineHeight;
+	int **buffer;
+	int texX;
+	int texY;
+	int	*text;
+	void	*tex;
+	int	*text2;
+	void	*tex2;
+	long int	Ccolor;
+	long int	Fcolor;
 }		t_mlx;
 
 typedef struct s_all
@@ -78,5 +94,6 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all);
 void	mlx_main_loop(t_all *all, char *map[10]);
 int		print_plz(t_all *all, char *map[10]);
 int print_plz(t_all *all, char *map[10]);
+void	initImgs(t_all *all);
 
 #endif
