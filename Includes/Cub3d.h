@@ -84,7 +84,9 @@ typedef struct s_all
 {
 	t_size	*size;
 	t_mlx	*mlx;
+	char	*map_file;
 	char	**map;
+	char	*mapl;
 }			t_all;
 /*--------- Structs ---------*/
 
@@ -108,6 +110,21 @@ void	getWallHit(t_all *all, char **map);
 void	mlx_main_loop(t_all *all, char **map);
 void	getDrawPos(t_all *all, char **map, int *ii);
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all);
-/*--------- Functions ---------*/
+
+/*--------- Parsing Functions ---------*/
+
+size_t	ft_strlen(const char *str);
+void	ft_putstr_fd(char *s, int fd);
+char	*ft_strdup(const char *str);
+size_t	ft_delimiter(char c);
+size_t	ft_wordcount(char *str);
+void	ft_split(char *str, t_all *all);
+char	*ft_strjoin(char *s1, char *s2);
+
+void	ft_read(int fd, t_all *all);
+void	ft_map_checker(t_all *all);
+void	ft_map_extension(t_all *all);
+
+void	ft_error(t_all *all);
 
 #endif
