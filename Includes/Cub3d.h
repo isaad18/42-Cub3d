@@ -78,6 +78,10 @@ typedef struct s_mlx
 	int			**buffer;
 	int			drawStart;
 	int			lineHeight;
+	void		*img;
+	int			b;
+	int			h;
+	int			w;
 }			t_mlx;
 
 typedef struct s_all

@@ -2,14 +2,26 @@
 
 int	closew(t_all *all)
 {
+	int	i;
+
+	i = 0;
 	mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
+	mlx_destroy_image(all->mlx->mlx, all->mlx->tex);
+	mlx_destroy_image(all->mlx->mlx, all->mlx->tex2);
+	mlx_destroy_image(all->mlx->mlx, all->mlx->img);
+	while (all->mlx->buffer[i])
+	{
+		free(all->mlx->buffer[i]);
+		i++;
+	}
+	free(all->mlx->buffer);
 	exit(0);
 }
 
 void	key13(t_all *all)
 {
 	if(all->map[(int)(all->size->posX + all->size->dirX * all->size->moveSpeed)][(int)\
-	(all->size->posY)] != '1') all->size->posX += all->size->dirX * all->size->moveSpeed;
+	(all->size->posY)] != '1') all->size->posX += all->size->dirX * all->size->moveSpeed;		
 	if(all->map[(int)(all->size->posX)][(int)(all->size->posY + all->size->dirY * \
 	all->size->moveSpeed)] != '1') all->size->posY += all->size->dirY * all->size->moveSpeed;
 	mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);

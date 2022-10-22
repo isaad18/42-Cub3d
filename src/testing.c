@@ -17,17 +17,13 @@ void	drawall(t_all *all, int **buffer)
 {
 	int	i;
 	int	j;
-	int	w;
-	int	b;
-	int	h;
 	int	*texture;
-	void	*img;
 
 	i = 0;
 	j = 0;
 	mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
-	img = mlx_new_image(all->mlx->mlx, all->size->win_x, all->size->win_y);
-	texture = (int *)mlx_get_data_addr(img, &b, &w, &h);
+	all->mlx->img = mlx_new_image(all->mlx->mlx, all->size->win_x, all->size->win_y);
+	texture = (int *)mlx_get_data_addr(all->mlx->img, &all->mlx->b, &all->mlx->w, &all->mlx->h);
 	while (j < all->size->win_y)
 	{
 		i = 0;
@@ -38,8 +34,7 @@ void	drawall(t_all *all, int **buffer)
 		}
 		j++;
 	}
-	mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, img, 0, 0);
-	mlx_destroy_image(all->mlx->mlx, img);
+	mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, all->mlx->img, 0, 0);
 }
 
 void	fill_the_void(t_all *all, int y, int x)
@@ -115,12 +110,32 @@ void	initImgs(t_all *all)
 	}
 }
 
+void	clearBuffer(t_all *all)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < all->size->win_y)
+	{
+		j = 0;
+		while (j < all->size->win_x)
+		{
+			all->mlx->buffer[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+}
+
 int print_plz(t_all *all, char **map)
 {
 	int ii = 0;
 	int x = 0;
 	int y = 0;
 
+	clearBuffer(all);
 	while (x < all->size->win_x)
 	{
 		initDrawing(all, x);
@@ -141,6 +156,6 @@ int print_plz(t_all *all, char **map)
 
 	drawall(all, all->mlx->buffer);
 	all->size->moveSpeed = 0.1;
-	all->size->rotSpeed = 0.053;
+	all->size->rotSpeed = 0.055;
 	return (0);
 }

@@ -2,10 +2,8 @@
 
 int	key(int keycode, t_all *all)
 {
-	if (keycode == 53){
-		mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
-		exit(0);
-	}
+	if (keycode == 53)
+		closew(all);
 	if(keycode == 13)
 		key13(all);
 	if(keycode == 0)
