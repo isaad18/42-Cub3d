@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   drawHelper.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/22 20:29:34 by isaad             #+#    #+#             */
+/*   Updated: 2022/10/22 22:18:54 by isaad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Includes/Cub3d.h"
 
-void	initDir(t_all *all)
+void	initdir(t_all *all)
 {
-	if(all->size->rayDirX < 0)
+	if (all->size->rayDirX < 0)
 	{
 		all->size->stepX = -1;
 		all->size->sideDistX = (all->size->posX - \
@@ -14,7 +26,7 @@ void	initDir(t_all *all)
 		all->size->sideDistX = (all->size->mapX + 1.0 - \
 		all->size->posX) * all->size->deltaDistX;
 	}
-	if(all->size->rayDirY < 0)
+	if (all->size->rayDirY < 0)
 	{
 		all->size->stepY = -1;
 		all->size->sideDistY = (all->size->posY - \
@@ -28,48 +40,67 @@ void	initDir(t_all *all)
 	}
 }
 
-void	getWallHit(t_all *all, char **map)
+void	getwallhit(t_all *all, char **map)
 {
-	while(all->size->hit == 0)
+	while (all->size->hit == 0)
 	{
-		if(all->size->sideDistX < all->size->sideDistY)
+		if (all->size->sideDistX < all->size->sideDistY)
 		{
-		  all->size->sideDistX += all->size->deltaDistX;
-		  all->size->mapX += all->size->stepX;
-		  all->size->side = 0;
+			all->size->sideDistX += all->size->deltaDistX;
+			all->size->mapX += all->size->stepX;
+			all->size->side = 0;
 		}
 		else
 		{
-		  all->size->sideDistY += all->size->deltaDistY;
-		  all->size->mapY += all->size->stepY;
-		  all->size->side = 1;
+			all->size->sideDistY += all->size->deltaDistY;
+			all->size->mapY += all->size->stepY;
+			all->size->side = 1;
 		}
-		if (map[all->size->mapX][all->size->mapY] != '0' && map[all->size->mapX][all->size->mapY] != 'P')
+		if (map[all->size->mapX][all->size->mapY] != '0' &&
+				map[all->size->mapX][all->size->mapY] != 'P')
 			all->size->hit = 1;
 	}
 }
 
-void	getDrawPos(t_all *all, char **map, int *ii)
+void	extracheck(t_all *all)
 {
-	if(all->size->side == 0)
-		all->size->perpWallDist = (all->size->sideDistX - all->size->deltaDistX);
+	if (all->size->side == 0)
+		all->size->perpWallDist = (all->size->sideDistX
+				- all->size->deltaDistX);
 	else
-		all->size->perpWallDist = (all->size->sideDistY - all->size->deltaDistY);
+		all->size->perpWallDist = (all->size->sideDistY
+				- all->size->deltaDistY);
 	all->mlx->lineHeight = (int)(all->size->win_y / all->size->perpWallDist);
-	all->mlx->drawStart = -all->mlx->lineHeight / 2 + ((all->size->win_y / 2) + all->size->updown);
-	if(all->mlx->drawStart < 0)
+	all->mlx->drawStart = -all->mlx->lineHeight / 2
+		+ ((all->size->win_y / 2) + all->size->updown);
+	if (all->mlx->drawStart < 0)
 		all->mlx->drawStart = 0;
-	all->mlx->drawEnd = all->mlx->lineHeight / 2 + ((all->size->win_y / 2) + all->size->updown);
-	if(all->mlx->drawEnd >= all->size->win_y)
+	all->mlx->drawEnd = all->mlx->lineHeight / 2
+		+ ((all->size->win_y / 2) + all->size->updown);
+}
+
+void	getdrawpos(t_all *all, char **map, int *ii)
+{
+	extracheck(all);
+	if (all->mlx->drawEnd >= all->size->win_y)
 		all->mlx->drawEnd = all->size->win_y - 1;
-	if(all->size->side == 0 && map[(int)all->size->mapX][(int)all->size->mapY] == '1')
+	if (all->size->side == 0 && map[(int)all->size->mapX]
+		[(int)all->size->mapY] == '1')
 	{
-		all->size->wallX = all->size->posY + all->size->perpWallDist * all->size->rayDirY;
-		*ii = 1;
+		all->size->wallX = all->size->posY + all
+			->size->perpWallDist * all->size->rayDirY;
+		if (all->size->rayDirX > 0)
+			*ii = 2;
+		else
+			*ii = 1;
 	}
 	else
 	{
-		all->size->wallX = all->size->posX + all->size->perpWallDist * all->size->rayDirX;
-		*ii = 2;
+		all->size->wallX = all->size->posX + all
+			->size->perpWallDist * all->size->rayDirX;
+		if (all->size->rayDirY > 0)
+			*ii = 3;
+		else
+			*ii = 4;
 	}
 }

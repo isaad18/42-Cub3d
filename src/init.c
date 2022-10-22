@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/22 20:26:12 by isaad             #+#    #+#             */
+/*   Updated: 2022/10/23 02:58:04 by isaad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Includes/Cub3d.h"
 
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
@@ -5,7 +17,7 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 	mlx->Ccolor = 0x87CEEB;
 	mlx->Fcolor = 0x964B00;
 	all->mlx = mlx;
-	size->where = 3;
+	size->where = 0;
 	size->posX = 5;
 	size->posY = 14;
 	if (size->where == 0)
@@ -59,14 +71,22 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 	all->size = size;
 }
 
-void	initDrawing(t_all *all, int x)
+void	initdrawing(t_all *all, int x)
 {
 	all->size->cameraX = 2 * x / (double)all->size->win_x - 1;
-	all->size->rayDirX = all->size->dirX + all->size->planeX * all->size->cameraX;
-	all->size->rayDirY = all->size->dirY + all->size->planeY * all->size->cameraX;
+	all->size->rayDirX = all->size->dirX + all
+		->size->planeX * all->size->cameraX;
+	all->size->rayDirY = all->size->dirY + all->size
+		->planeY * all->size->cameraX;
 	all->size->mapX = (int)all->size->posX;
 	all->size->mapY = (int)all->size->posY;
-	all->size->deltaDistX = (all->size->rayDirX == 0) ? 1e30 : fabs(1 / all->size->rayDirX);
-	all->size->deltaDistY = (all->size->rayDirY == 0) ? 1e30 : fabs(1 / all->size->rayDirY);
+	if (all->size->rayDirX == 0)
+		all->size->deltaDistX = 1e30;
+	else
+		all->size->deltaDistX = fabs(1 / all->size->rayDirX);
+	if (all->size->rayDirY == 0)
+		all->size->deltaDistY = 1e30;
+	else
+		all->size->deltaDistY = fabs(1 / all->size->rayDirY);
 	all->size->hit = 0;
 }

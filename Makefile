@@ -22,11 +22,12 @@ RCS	= ./src/Cub3d.c\
 ./src/init.c \
 ./src/MKcmd.c \
 ./src/parsing.c \
-./src/parsing_utils.c
+./src/parsing_utils.c \
+./src/draw.c
 
 OBJS	= $(RCS:.c=.o)
 
-NAME	= Cub3d
+NAME	= cub3d
 
 CFLAGS	= -Wall -Werror -Wextra
 

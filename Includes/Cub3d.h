@@ -71,6 +71,10 @@ typedef struct s_mlx
 	int			*text;
 	void		*tex2;
 	int			*text2;
+	void		*tex3;
+	int			*text3;
+	void		*tex4;
+	int			*text4;
 	long int	Ccolor;
 	long int	Fcolor;
 	int			drawEnd;
@@ -103,16 +107,20 @@ void	key13(t_all *all);
 int		closew(t_all *all);
 void	key123(t_all *all);
 void	key124(t_all *all);
-void	initDir(t_all *all);
+void	initdir(t_all *all);
 void	keydown(t_all *all);
-void	initImgs(t_all *all);
+void	initimgs(t_all *all);
+void	drawall(t_all *all, int **buffer);
 int		key(int keycode, t_all *all);
-void	initDrawing(t_all *all, int x);
+void	filldown(t_all *all, int y, int x);
+void	fill_the_void(t_all *all, int y, int x);
+void	gettexture(t_all *all, int ii);
+void	initdrawing(t_all *all, int x);
 int		mouse(int x, int y, t_all *all);
 int		print_plz(t_all *all, char **map);
-void	getWallHit(t_all *all, char **map);
+void	getwallhit(t_all *all, char **map);
 void	mlx_main_loop(t_all *all, char **map);
-void	getDrawPos(t_all *all, char **map, int *ii);
+void	getdrawpos(t_all *all, char **map, int *ii);
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all);
 
 /*--------- Parsing Functions ---------*/
