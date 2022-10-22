@@ -20,7 +20,8 @@ RCS	= ./src/Cub3d.c\
 ./src/keys1.c \
 ./src/drawHelper.c \
 ./src/init.c \
-./src/MKcmd.c
+./src/MKcmd.c \
+./src/parsing.C
 
 OBJS	= $(RCS:.c=.o)
 
