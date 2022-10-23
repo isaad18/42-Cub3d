@@ -21,20 +21,20 @@ RCS	= ./src/Cub3d.c\
 ./src/drawHelper.c \
 ./src/init.c \
 ./src/MKcmd.c \
+./src/draw.c \
 ./src/parsing.c \
-./src/parsing_utils.c \
-./src/draw.c
+./src/parsing_utils.c
 
 OBJS	= $(RCS:.c=.o)
 
 NAME	= cub3d
 
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -g -Wall -Werror -Wextra
 
 mlx = ./mlx/libmlx.a
 
 $(NAME)	:
-		echo $(G)"Cub3d is being compiled..." $(RS)
+		echo $(G)"cub3d is being compiled..." $(RS)
 		-@make -C ./mlx 2>/dev/null || true
 		@echo $(B)"         ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ "$(RS)
 		@echo $(B)"         ║"$(C)"░░░░░███████░░██░░░░██░░████████░░███████░░███████░░░░░░"$(B)"║"$(RS)

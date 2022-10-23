@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:12 by isaad             #+#    #+#             */
-/*   Updated: 2022/10/23 02:58:04 by isaad            ###   ########.fr       */
+/*   Updated: 2022/10/23 14:47:20 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 	mlx->Ccolor = 0x87CEEB;
 	mlx->Fcolor = 0x964B00;
 	all->mlx = mlx;
+	all->mlx = mlx;
+	all->exit = 0;
+	all->textures = NULL;
+	all->colors = NULL;
+	all->splmap = NULL;
+	all->map = NULL;
+	all->mapl = NULL;
+	all->map_file = NULL;
 	size->where = 0;
 	size->posX = 5;
 	size->posY = 14;
@@ -48,8 +56,8 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 		size->planeX = -0.66;
 		size->planeY = 0;
 	}
-	size->win_x = 740;
-	size->win_y = 580;
+	size->win_x = 960;
+	size->win_y = 540;
 	size->cameraX = 0;
 	size->rayDirX = 0;
 	size->rayDirY = 0;

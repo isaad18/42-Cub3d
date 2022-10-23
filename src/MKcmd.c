@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MKcmd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:23 by isaad             #+#    #+#             */
-/*   Updated: 2022/10/23 02:51:15 by isaad            ###   ########.fr       */
+/*   Updated: 2022/10/23 14:37:21 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key(int keycode, t_all *all)
 {
 	if (keycode == 53)
-		closew(all);
+		ft_quit(all);
 	if (keycode == 13)
 		key13(all);
 	if (keycode == 0)

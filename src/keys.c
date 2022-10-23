@@ -3,39 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:33 by isaad             #+#    #+#             */
-/*   Updated: 2022/10/22 22:17:27 by isaad            ###   ########.fr       */
+/*   Updated: 2022/10/23 14:35:47 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/Cub3d.h"
 
-int	closew(t_all *all)
-{
-	int	i;
-
-	i = 0;
-	if (all->mlx->mlx_win)
-		mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
-	if (all->mlx->tex)
-		mlx_destroy_image(all->mlx->mlx, all->mlx->tex);
-	if (all->mlx->tex2)
-		mlx_destroy_image(all->mlx->mlx, all->mlx->tex2);
-	if (all->mlx->img)
-		mlx_destroy_image(all->mlx->mlx, all->mlx->img);
-	if (all->mlx->buffer)
-	{
-		while (i < all->size->win_y)
-		{
-			free(all->mlx->buffer[i]);
-			i++;
-		}
-	}
-	free(all->mlx->buffer);
-	exit(0);
-}
 
 void	key13(t_all *all)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:29:44 by isaad             #+#    #+#             */
-/*   Updated: 2022/10/23 02:59:25 by isaad            ###   ########.fr       */
+/*   Updated: 2022/10/23 14:48:36 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	mlx_main_loop(t_all *all, char **map)
 	print_plz(all, map);
 	mlx_hook(all->mlx->mlx_win, 2, (1L << 0), key, all);
 	mlx_hook(all->mlx->mlx_win, 6, 1L << 6, mouse, all);
-	mlx_hook(all->mlx->mlx_win, 17, 1L << 5, closew, all);
+	mlx_hook(all->mlx->mlx_win, 17, 1L << 5, ft_quit, all);
 	mlx_loop(all->mlx->mlx);
 }
 
@@ -117,8 +117,6 @@ int	print_plz(t_all *all, char **map)
 		fill_the_void(all, y, x);
 		x++;
 	}
-	printf("%f      %f\n", all->size->planeX, all->size->planeY);
-	printf("%f      %f\n___________________\n", all->size->dirX, all->size->dirY);
 	drawall(all, all->mlx->buffer);
 	all->size->moveSpeed = 0.12;
 	all->size->rotSpeed = 0.055;

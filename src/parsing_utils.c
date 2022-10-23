@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:53:04 by ytouab            #+#    #+#             */
-/*   Updated: 2022/10/22 19:22:55 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/10/23 13:49:52 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ char	*ft_strdup(const char *str)
 	char	*ret;
 	int		i;
 
+	if (!str)
+		return (NULL);
 	i = ft_strlen(str);
 	ret = (char *)malloc((i + 1) * sizeof(char));
 	if (!ret)
 		return (0);
 	i = 0;
-	while (str[i])
+	while (i < (int)ft_strlen(str) && str[i])
 	{
 		ret[i] = str[i];
 		i++;
@@ -82,7 +84,7 @@ size_t	ft_wordcount(char *str)
 	return (nb);
 }
 
-void	ft_split(char *str, t_all *all)
+char	**ft_split(char *str, t_all *all)
 {
 	char	**ret;
 	size_t	wordc;
@@ -92,7 +94,7 @@ void	ft_split(char *str, t_all *all)
 	wordc = ft_wordcount(str);
 	ret = (char **)malloc((wordc + 1) * sizeof(char *));
 	if (!ret)
-		ft_error(all);
+		ft_error(all, 4);
 	i = 0;
 	while (i < wordc)
 	{
@@ -107,8 +109,8 @@ void	ft_split(char *str, t_all *all)
 			ret[i][x++] = *str++;
 		ret[i++][x] = 0;
 	}
-	ret[i] = 0;
-	all->map = ret;
+	ret[i] = NULL;
+	return (ret);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -136,3 +138,49 @@ char	*ft_strjoin(char *s1, char *s2)
 	free(s1);
 	return (ret);
 }
+
+size_t	ft_arr_len(char **arr)
+{
+	size_t	i;
+
+	i = 0;
+	if (!arr)
+		return (0);
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+void	ft_arr_print(char **arr)
+{
+	size_t	i;
+
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
+		ft_putstr_fd(arr[i++], 1);
+		ft_putstr_fd("\n", 1);
+	}
+}
+
+char	**ft_arr_dup(char **arr, size_t start, size_t size)
+{
+	size_t	i;
+	size_t	j;
+	char	**ret;
+
+	if (!size)
+		return (NULL);
+	i = start;
+	j = 0;
+	ret = (char **)malloc((size + 1) * sizeof(char *));
+	if (!ret)
+		return (NULL);
+	while ((i < (start + size)) && arr[i])
+		ret[j++] = ft_strdup(arr[i++]);
+	ret[j] = NULL;
+	return (ret);
+}
+

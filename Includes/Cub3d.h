@@ -93,8 +93,12 @@ typedef struct s_all
 	t_size	*size;
 	t_mlx	*mlx;
 	char	*map_file;
-	char	**map;
 	char	*mapl;
+	char	**splmap;
+	char	**textures;
+	char	**colors;
+	char	**map;
+	int		exit;
 }			t_all;
 /*--------- Structs ---------*/
 
@@ -104,7 +108,6 @@ void	key1(t_all *all);
 void	key2(t_all *all);
 void	keyup(t_all *all);
 void	key13(t_all *all);
-int		closew(t_all *all);
 void	key123(t_all *all);
 void	key124(t_all *all);
 void	initdir(t_all *all);
@@ -130,13 +133,18 @@ void	ft_putstr_fd(char *s, int fd);
 char	*ft_strdup(const char *str);
 size_t	ft_delimiter(char c);
 size_t	ft_wordcount(char *str);
-void	ft_split(char *str, t_all *all);
+char	**ft_split(char *str, t_all *all);
 char	*ft_strjoin(char *s1, char *s2);
+char	**ft_arr_dup(char **arr, size_t start, size_t size);
+size_t	ft_arr_len(char **arr);
+void	ft_arr_print(char **arr);
 
 void	ft_read(int fd, t_all *all);
 void	ft_map_checker(t_all *all);
 void	ft_map_extension(t_all *all);
 
-void	ft_error(t_all *all);
+void	ft_error(t_all *all, int error);
+int		ft_quit(t_all *all);
+
 
 #endif
