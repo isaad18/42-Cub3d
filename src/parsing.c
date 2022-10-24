@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/10/23 14:43:53 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:18:54 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_quit(t_all *all)
 	int	excode;
 
 	i = 0;
+	(void)i;
 	excode = all->exit;
 	// if (all->mlx->mlx_win)
 	// 	mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);

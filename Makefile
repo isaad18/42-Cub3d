@@ -47,7 +47,7 @@ $(NAME)	:
 		@echo "                        "$(P)"  𝓘𝓶𝓪𝓭 𝓢𝓪𝓪𝓭 && 𝔂𝓪𝓼𝓼𝓮𝓻 𝓽𝓸𝓾𝓪𝓫"$(RS)
 		@echo "$                         "$(G)"-----------------------------"$(RS)
 		@echo "\n"
-		gcc $(CFLAGS) -o Cub3d $(RCS) $(mlx) -framework OpenGL -framework AppKit
+		gcc $(CFLAGS) -o cub3d $(RCS) $(mlx) -framework OpenGL -framework AppKit
 
 all	: $(NAME)
 
