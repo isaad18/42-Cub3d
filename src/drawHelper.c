@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   drawHelper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:29:34 by isaad             #+#    #+#             */
-/*   Updated: 2022/10/22 22:18:54 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/08 13:12:54 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/Cub3d.h"
+#include "../Includes/cub3d.h"
 
 void	initdir(t_all *all)
 {

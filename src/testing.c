@@ -6,17 +6,17 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:29:44 by isaad             #+#    #+#             */
-/*   Updated: 2022/10/23 14:48:36 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:12:54 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/Cub3d.h"
+#include "../Includes/cub3d.h"
 
 void	mlx_main_loop(t_all *all, char **map)
 {
 	all->mlx->mlx = mlx_init();
 	all->mlx->mlx_win = mlx_new_window(all->mlx->mlx, all->\
-	size->win_x, all->size->win_y, "Cub3d");
+	size->win_x, all->size->win_y, "cub3d");
 	initimgs(all);
 	print_plz(all, map);
 	mlx_hook(all->mlx->mlx_win, 2, (1L << 0), key, all);

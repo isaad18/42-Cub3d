@@ -6,11 +6,11 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:43 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/07 20:34:16 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:12:54 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/Cub3d.h"
+#include "../Includes/cub3d.h"
 
 void	keyup(t_all *all)
 {

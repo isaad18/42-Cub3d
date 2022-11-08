@@ -2,5 +2,5 @@
 a.out
 .DS_store
 *.o
-Cub3d
+cub3d
 *.dSYM

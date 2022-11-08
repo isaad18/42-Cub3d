@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/11/08 12:59:15 by ytouab            #+#    #+#              #
+#    Updated: 2022/11/08 13:12:54 by ytouab           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 ifndef VERPOSE
 .SILENT:
 endif
@@ -52,12 +64,12 @@ $(NAME)	:
 all	: $(NAME)
 
 clean :
-		echo $(R)"Cub3d object files are being deleted..." $(RS)
+		echo $(R)"cub3d object files are being deleted..." $(RS)
 		rm -f $(OBJS)
 		-@make clean -C mlx 2>/dev/null || true
 
 fclean : clean
-		echo $(R)"Cub3d executable file is being deleted..." $(RS)
+		echo $(R)"cub3d executable file is being deleted..." $(RS)
 		rm -f $(NAME)
 		-@make clean -C mlx 2>/dev/null || true
 

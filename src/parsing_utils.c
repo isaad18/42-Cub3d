@@ -6,11 +6,33 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:53:04 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/07 20:34:38 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:57:12 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/Cub3d.h"
+#include "../Includes/cub3d.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int	ft_atoi_index(t_all *all, const char *str, size_t i, int error)
+{
+	size_t	nb;
+
+	nb = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r')
+		i++;
+	while (ft_isdigit(str[i]))
+		nb = nb * 10 + str[i++] - 48;
+	if (nb >= 9223372036854775807)
+		ft_error(all, error);
+	return (nb);
+}
 
 size_t	ft_strlen(const char *str)
 {

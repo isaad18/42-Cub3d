@@ -6,11 +6,11 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/07 20:37:59 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/08 16:23:55 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/Cub3d.h"
+#include "../Includes/cub3d.h"
 
 int	ft_quit(t_all *all)
 {
@@ -20,18 +20,18 @@ int	ft_quit(t_all *all)
 	i = -1;
 	(void)i;
 	excode = all->exit;
-	if (all->mlx->mlx_win)
-		mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
-	if (all->mlx->tex)
-		mlx_destroy_image(all->mlx->mlx, all->mlx->tex);
-	if (all->mlx->tex2)
-		mlx_destroy_image(all->mlx->mlx, all->mlx->tex2);
-	if (all->mlx->img)
-		mlx_destroy_image(all->mlx->mlx, all->mlx->img);
-	if (all->mlx->buffer)
-		while (++i < all->size->win_y)
-			free(all->mlx->buffer[i]);
-	free(all->mlx->buffer);
+	// if (all->mlx->mlx_win)
+	// 	mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
+	// if (all->mlx->tex)
+	// 	mlx_destroy_image(all->mlx->mlx, all->mlx->tex);
+	// if (all->mlx->tex2)
+	// 	mlx_destroy_image(all->mlx->mlx, all->mlx->tex2);
+	// if (all->mlx->img)
+	// 	mlx_destroy_image(all->mlx->mlx, all->mlx->img);
+	// if (all->mlx->buffer)
+	// 	while (++i < all->size->win_y)
+	// 		free(all->mlx->buffer[i]);
+	// free(all->mlx->buffer);
 	exit(excode);
 }
 
@@ -50,6 +50,8 @@ void	ft_error(t_all *all, int error)
 		ft_putstr_fd(Y"Memory allocation failed\n", 2);
 	else if (error == 5)
 		ft_putstr_fd(Y"Invalid Map\n", 2);
+	else if (error == 6)
+		ft_putstr_fd(Y"Invalid Color\n", 2);
 	ft_quit(all);
 }
 
@@ -95,6 +97,7 @@ void	ft_map_checker(t_all *all)
 	ft_arr_print(all->textures);
 	ft_arr_print(all->colors);
 	ft_arr_print(all->map);
+	ft_color_chars_checker(all, 2, 0);
 	// ft_map_valid_char(all);
 	// if (!all->c || all->e != 1 || all->p != 1)
 	// 	ft_error(all, all);
@@ -115,6 +118,31 @@ void	ft_map_extension(t_all *all)
 	if (!(all->map_file[i] == 'b' && all->map_file[i - 1] == 'u'
 			&& all->map_file[i - 2] == 'c' && all->map_file[i - 3] == '.'))
 		ft_error(all, 2);
+}
+
+void	ft_color_chars_checker(t_all *all, size_t i, size_t a)
+{
+	if (all->colors[a][0] != 'F' || all->colors[1][0] != 'C'
+		|| all->colors[0][1] != ' ' || all->colors[1][1] != ' ')
+		ft_error(all, 6);
+	while (a < 2)
+	{
+		i = 2;
+		while (all->colors[a][i])
+		{
+			if (!ft_isdigit(all->colors[a][i]))
+				ft_error(all, 6);
+			if (ft_atoi_index(all, all->colors[a], i, 6) > 255
+				|| ft_atoi_index(all, all->colors[a], i, 6) < 0)
+				ft_error(all, 6);
+			while (all->colors[a][i] && ft_isdigit(all->colors[a][i]))
+				i++;
+			if (all->colors[a][i] &&
+				(all->colors[a][i] != ',' || !ft_isdigit(all->colors[a][++i])))
+				ft_error(all, 6);
+		}
+		a++;
+	}
 }
 
 // void	ft_map_valid_char(t_all *all)

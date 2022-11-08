@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
+/*   Updated: 2022/11/08 14:35:43 by ytouab           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+
 #ifndef CUB3D_H
 
 # define CUB3D_H
@@ -129,6 +143,7 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all);
 /*--------- Parsing Functions ---------*/
 
 size_t	ft_strlen(const char *str);
+int		ft_isdigit(int c);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strdup(const char *str);
 size_t	ft_delimiter(char c);
@@ -142,6 +157,8 @@ void	ft_arr_print(char **arr);
 void	ft_read(int fd, t_all *all);
 void	ft_map_checker(t_all *all);
 void	ft_map_extension(t_all *all);
+int		ft_atoi_index(t_all *all, const char *str, size_t i, int error);
+void	ft_color_chars_checker(t_all *all, size_t i, size_t a);
 
 void	ft_error(t_all *all, int error);
 int		ft_quit(t_all *all);
