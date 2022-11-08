@@ -14,7 +14,7 @@ RS	= "\033[0m"
 
 #------------------- End Define Color ------------------#
 
-RCS	= ./src/Cub3d.c\
+RCS	= ./src/cub3d.c\
 ./src/testing.c \
 ./src/keys.c \
 ./src/keys1.c \
@@ -29,7 +29,7 @@ OBJS	= $(RCS:.c=.o)
 
 NAME	= cub3d
 
-CFLAGS	= -g -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra
 
 mlx = ./mlx/libmlx.a
 

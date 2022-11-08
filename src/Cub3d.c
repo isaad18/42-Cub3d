@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/07 20:33:18 by ytouab            #+#    #+#             */
+/*   Updated: 2022/11/07 20:33:19 by ytouab           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Includes/Cub3d.h"
 
 int	main(int argc, char **argv)
@@ -11,7 +23,6 @@ int	main(int argc, char **argv)
 	{
 		all.map_file = ft_strdup(argv[1]);
 		ft_map_checker(&all);
-		ft_arr_print(all.map);
 		mlx_main_loop(&all, all.map);
 	}
 	else

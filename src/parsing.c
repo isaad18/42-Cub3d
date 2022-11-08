@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/10/24 15:18:54 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/07 20:37:59 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,21 @@ int	ft_quit(t_all *all)
 	int	i;
 	int	excode;
 
-	i = 0;
+	i = -1;
 	(void)i;
 	excode = all->exit;
-	// if (all->mlx->mlx_win)
-	// 	mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
-	// if (all->mlx->tex)
-	// 	mlx_destroy_image(all->mlx->mlx, all->mlx->tex);
-	// if (all->mlx->tex2)
-	// 	mlx_destroy_image(all->mlx->mlx, all->mlx->tex2);
-	// if (all->mlx->img)
-	// 	mlx_destroy_image(all->mlx->mlx, all->mlx->img);
-	// if (all->mlx->buffer)
-	// {
-	// 	while (i < all->size->win_y)
-	// 	{
-	// 		free(all->mlx->buffer[i]);
-	// 		i++;
-	// 	}
-	// }
-	// free(all->mlx->buffer);
+	if (all->mlx->mlx_win)
+		mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
+	if (all->mlx->tex)
+		mlx_destroy_image(all->mlx->mlx, all->mlx->tex);
+	if (all->mlx->tex2)
+		mlx_destroy_image(all->mlx->mlx, all->mlx->tex2);
+	if (all->mlx->img)
+		mlx_destroy_image(all->mlx->mlx, all->mlx->img);
+	if (all->mlx->buffer)
+		while (++i < all->size->win_y)
+			free(all->mlx->buffer[i]);
+	free(all->mlx->buffer);
 	exit(excode);
 }
 
@@ -96,7 +91,10 @@ void	ft_map_checker(t_all *all)
 	all->splmap = ft_split(all->mapl, all);
 	all->textures = ft_arr_dup(all->splmap, 0, 4);
 	all->colors = ft_arr_dup(all->splmap, 4, 2);
-	all->map = ft_arr_dup(all->splmap, 6, 14);
+	all->map = ft_arr_dup(all->splmap, 6, ft_arr_len(all->splmap) - 6);
+	ft_arr_print(all->textures);
+	ft_arr_print(all->colors);
+	ft_arr_print(all->map);
 	// ft_map_valid_char(all);
 	// if (!all->c || all->e != 1 || all->p != 1)
 	// 	ft_error(all, all);
