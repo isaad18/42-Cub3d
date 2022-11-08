@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:53:04 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/08 14:57:12 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/08 17:40:40 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_atoi_index(t_all *all, const char *str, size_t i, int error)
+size_t	ft_atoi_index(t_all *all, const char *str, size_t i, int error)
 {
 	size_t	nb;
 
