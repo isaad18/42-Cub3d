@@ -6,14 +6,11 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/09 19:30:11 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/09 22:17:33 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #ifndef CUB3D_H
-
 # define CUB3D_H
 
 /*--------  Libraries --------*/
@@ -36,12 +33,12 @@
 # define C "\033[0;36m"
 # define P "\033[0;35m"
 # define RESET "\033[0m"
+/*---------  Colors ---------*/
 
 /*---------  Vars ---------*/
 # define HEX "0123456789ABCDEF"
 # define DEC "0123456789"
-
-/*---------  Colors ---------*/
+/*---------  Vars ---------*/
 
 /*--------- Structs ---------*/
 typedef struct s_size

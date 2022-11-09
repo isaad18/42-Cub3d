@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/09 19:33:21 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/09 22:13:06 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	ft_map_checker(t_all *all)
 	ft_arr_print(all->textures);
 	ft_arr_print(all->colors);
 	ft_arr_print(all->map);
-
 	ft_color_parse(all);
 	// ft_map_valid_char(all);
 	// if (!all->c || all->e != 1 || all->p != 1)
@@ -123,11 +122,14 @@ void	ft_map_extension(t_all *all)
 
 void	ft_color_chars_checker(t_all *all, size_t i, size_t a)
 {
+	int	comma;
+
 	if (all->colors[a][0] != 'F' || all->colors[1][0] != 'C'
 		|| all->colors[0][1] != ' ' || all->colors[1][1] != ' ')
 		ft_error(all, 6);
 	while (a < 2)
 	{
+		comma = 0;
 		i = 2;
 		while (all->colors[a][i])
 		{
@@ -138,11 +140,15 @@ void	ft_color_chars_checker(t_all *all, size_t i, size_t a)
 				ft_error(all, 6);
 			while (all->colors[a][i] && ft_isdigit(all->colors[a][i]))
 				i++;
+			if (all->colors[a][i] && all->colors[a][i] == ',')
+				comma++;
 			if (all->colors[a][i] &&
 				(all->colors[a][i] != ',' || !ft_isdigit(all->colors[a][++i])))
 				ft_error(all, 6);
 		}
 		a++;
+		if (comma != 2)
+			ft_error(all, 6);
 	}
 }
 
@@ -156,8 +162,7 @@ char	*ft_rgb_to_hex(t_all *all, char *rgb, size_t i)
 	while (rgb[i])
 	{
 		tmp = ft_atoi_index(all, rgb, i, 6);
-		color = ft_strjoin(color, ft_convert_base(ft_itoa(tmp),
-					DEC, HEX));
+		color = ft_strjoin(color, ft_convert_base(ft_itoa(tmp), DEC, HEX));
 		while (rgb[i] && ft_isdigit(rgb[i]))
 			i++;
 		if (rgb[i] && rgb[i] == ',')
@@ -176,6 +181,8 @@ void	ft_color_parse(t_all *all)
 	cc = ft_convert_base(ft_rgb_to_hex(all, all->colors[1], 2), HEX, DEC);
 	all->mlx->Fcolor = ft_atoi_index(all, fc, 0, 6);
 	all->mlx->Ccolor = ft_atoi_index(all, cc, 0, 6);
+	free(fc);
+	free(cc);
 }
 
 // void	ft_map_valid_char(t_all *all)
