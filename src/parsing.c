@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/08 17:42:27 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/09 19:33:21 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,8 @@ void	ft_map_checker(t_all *all)
 	ft_arr_print(all->textures);
 	ft_arr_print(all->colors);
 	ft_arr_print(all->map);
-	ft_color_chars_checker(all, 2, 0);
-	printf("color: %zu\n", ft_rgb_to_hex(all, all->colors[0], 2));
-	printf("color: %zu\n", ft_rgb_to_hex(all, all->colors[1], 2));
+
+	ft_color_parse(all);
 	// ft_map_valid_char(all);
 	// if (!all->c || all->e != 1 || all->p != 1)
 	// 	ft_error(all, all);
@@ -147,22 +146,36 @@ void	ft_color_chars_checker(t_all *all, size_t i, size_t a)
 	}
 }
 
-size_t	ft_rgb_to_hex(t_all *all, char *rgb, size_t i)
+char	*ft_rgb_to_hex(t_all *all, char *rgb, size_t i)
 {
-	size_t	color;
+	char	*color;
+	int		tmp;
 
-	color = 1;
+	color = ft_strdup("");
+	tmp = 255;
 	while (rgb[i])
 	{
-		if (ft_atoi_index(all, rgb, i, 6) > 0)
-			color = color * ft_atoi_index(all, rgb, i, 6);
-		printf("inside %zu: %zu\n ", i, ft_atoi_index(all, rgb, i, 6));
+		tmp = ft_atoi_index(all, rgb, i, 6);
+		color = ft_strjoin(color, ft_convert_base(ft_itoa(tmp),
+					DEC, HEX));
 		while (rgb[i] && ft_isdigit(rgb[i]))
 			i++;
 		if (rgb[i] && rgb[i] == ',')
 			i++;
-		}
+	}
 	return (color);
+}
+
+void	ft_color_parse(t_all *all)
+{
+	char	*fc;
+	char	*cc;
+
+	ft_color_chars_checker(all, 2, 0);
+	fc = ft_convert_base(ft_rgb_to_hex(all, all->colors[0], 2), HEX, DEC);
+	cc = ft_convert_base(ft_rgb_to_hex(all, all->colors[1], 2), HEX, DEC);
+	all->mlx->Fcolor = ft_atoi_index(all, fc, 0, 6);
+	all->mlx->Ccolor = ft_atoi_index(all, cc, 0, 6);
 }
 
 // void	ft_map_valid_char(t_all *all)

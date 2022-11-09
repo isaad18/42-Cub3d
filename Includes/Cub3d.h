@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/08 17:40:54 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/09 19:30:11 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@
 # define C "\033[0;36m"
 # define P "\033[0;35m"
 # define RESET "\033[0m"
+
+/*---------  Vars ---------*/
+# define HEX "0123456789ABCDEF"
+# define DEC "0123456789"
+
 /*---------  Colors ---------*/
 
 /*--------- Structs ---------*/
@@ -158,8 +163,18 @@ void	ft_read(int fd, t_all *all);
 void	ft_map_checker(t_all *all);
 void	ft_map_extension(t_all *all);
 size_t	ft_atoi_index(t_all *all, const char *str, size_t i, int error);
+char	*ft_itoa(int n);
 void	ft_color_chars_checker(t_all *all, size_t i, size_t a);
-size_t	ft_rgb_to_hex(t_all *all, char *rgb, size_t i);
+char	*ft_rgb_to_hex(t_all *all, char *rgb, size_t i);
+void	ft_color_parse(t_all *all);
+
+char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
+char	*ft_put_nbr(int nbr, char *base, int sign, int i);
+void	ft_putnbr_base(int nbr, int nbase, char *num_base, char *base);
+char	*ft_char(char *dest, char src);
+int		ft_lnbr(int nbr, int base_lenght);
+int		ft_inbase(char c, char *base);
+int		ft_checker(char *base);
 
 void	ft_error(t_all *all, int error);
 int		ft_quit(t_all *all);
