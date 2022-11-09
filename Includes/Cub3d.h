@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/09 22:17:33 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/09 22:53:18 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,9 +161,10 @@ void	ft_map_checker(t_all *all);
 void	ft_map_extension(t_all *all);
 size_t	ft_atoi_index(t_all *all, const char *str, size_t i, int error);
 char	*ft_itoa(int n);
-void	ft_color_chars_checker(t_all *all, size_t i, size_t a);
+void	ft_color_chars_checker(t_all *all, size_t i, size_t a, int comma);
 char	*ft_rgb_to_hex(t_all *all, char *rgb, size_t i);
 void	ft_color_parse(t_all *all);
+void	ft_map_valid_char(t_all *all);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 char	*ft_put_nbr(int nbr, char *base, int sign, int i);

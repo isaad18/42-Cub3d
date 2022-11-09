@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/09 22:13:06 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/09 23:17:48 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_error(t_all *all, int error)
 		ft_putstr_fd(Y"Invalid Map\n", 2);
 	else if (error == 6)
 		ft_putstr_fd(Y"Invalid Color\n", 2);
+	else if (error == 7)
+		ft_putstr_fd(Y"Invalid Chars in Map\n", 2);
 	ft_quit(all);
 }
 
@@ -98,6 +100,7 @@ void	ft_map_checker(t_all *all)
 	ft_arr_print(all->colors);
 	ft_arr_print(all->map);
 	ft_color_parse(all);
+	ft_map_valid_char(all);
 	// ft_map_valid_char(all);
 	// if (!all->c || all->e != 1 || all->p != 1)
 	// 	ft_error(all, all);
@@ -120,10 +123,8 @@ void	ft_map_extension(t_all *all)
 		ft_error(all, 2);
 }
 
-void	ft_color_chars_checker(t_all *all, size_t i, size_t a)
+void	ft_color_chars_checker(t_all *all, size_t i, size_t a, int comma)
 {
-	int	comma;
-
 	if (all->colors[a][0] != 'F' || all->colors[1][0] != 'C'
 		|| all->colors[0][1] != ' ' || all->colors[1][1] != ' ')
 		ft_error(all, 6);
@@ -146,8 +147,7 @@ void	ft_color_chars_checker(t_all *all, size_t i, size_t a)
 				(all->colors[a][i] != ',' || !ft_isdigit(all->colors[a][++i])))
 				ft_error(all, 6);
 		}
-		a++;
-		if (comma != 2)
+		if (++a && comma != 2)
 			ft_error(all, 6);
 	}
 }
@@ -176,7 +176,7 @@ void	ft_color_parse(t_all *all)
 	char	*fc;
 	char	*cc;
 
-	ft_color_chars_checker(all, 2, 0);
+	ft_color_chars_checker(all, 2, 0, 0);
 	fc = ft_convert_base(ft_rgb_to_hex(all, all->colors[0], 2), HEX, DEC);
 	cc = ft_convert_base(ft_rgb_to_hex(all, all->colors[1], 2), HEX, DEC);
 	all->mlx->Fcolor = ft_atoi_index(all, fc, 0, 6);
@@ -185,32 +185,37 @@ void	ft_color_parse(t_all *all)
 	free(cc);
 }
 
-// void	ft_map_valid_char(t_all *all)
-// {
-// 	size_t	i;
+void	ft_map_valid_char(t_all *all)
+{
+	size_t	i;
+	size_t	nl;
 
-// 	i = 0;
-// 	while (all->mapl[i])
-// 	{
-// 		if (all->mapl[i] == '1' || all->mapl[i] == '0' || all->mapl[i] == 'C'
-// 			|| all->mapl[i] == 'E' || all->mapl[i] == 'P' || all->mapl[i] == '\n'
-// 			|| all->mapl[i] == 'X')
-// 		{
-// 			if (all->mapl[i] == 'E')
-// 				all->e++;
-// 			else if (all->mapl[i] == 'C')
-// 				all->c++;
-// 			else if (all->mapl[i] == 'P')
-// 				all->p++;
-// 			else if (all->mapl[i] == '\n'
-// 				&& all->mapl[i + 1] == '\n' && all->mapl[i + 2])
-// 				ft_error(all);
-// 		}
-// 		else
-// 			ft_error(all, all);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	nl = 0;
+	while (all->mapl[i] && nl < 9)
+	{
+		// if ((nl == 4 && all->mapl[i] == '\n' && all->mapl[i + 1] != '\n')
+		// 	|| (nl == 7 && all->mapl[i] == '\n' && all->mapl[i + 1] != '\n'))
+		// 	ft_error(all, 5);
+		if (all->mapl[i] == '\n')
+			nl++;
+		i++;
+	}
+	while (all->mapl[i])
+	{
+		if (all->mapl[i] == '1' || all->mapl[i] == '0' || all->mapl[i] == 'N'
+			|| all->mapl[i] == 'S' || all->mapl[i] == 'E' || all->mapl[i] == 'W'
+			|| all->mapl[i] == ' ' || all->mapl[i] == '\n')
+		{
+			if (all->mapl[i] == '\n'
+				&& all->mapl[i + 1] == '\n' && all->mapl[i + 2])
+				ft_error(all, 7);
+		}
+		else
+			ft_error(all, 7);
+		i++;
+	}
+}
 
 // void	ft_check_rect(t_all *all)
 // {
