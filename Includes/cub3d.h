@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 17:50:54 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 20:43:02 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ char	*ft_strjoin(char *s1, char *s2);
 char	**ft_arr_dup(char **arr, size_t start, size_t size);
 size_t	ft_arr_len(char **arr);
 void	ft_arr_print(char **arr);
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 void	ft_read(int fd, t_all *all);
 void	ft_map_checker(t_all *all);
@@ -168,6 +170,8 @@ void	ft_map_valid_char(t_all *all, size_t i, size_t nl);
 void	ft_check_walls(t_all *all);
 void	ft_check_space(t_all *all, int i, int a);
 void	ft_check_zero(t_all *all);
+void	ft_replace_texture(t_all *all, char *direction, int a);
+void	ft_texture(t_all *all);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 char	*ft_put_nbr(int nbr, char *base, int sign, int i);

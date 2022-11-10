@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 17:51:15 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 21:12:13 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ void	ft_error(t_all *all, int error)
 		ft_putstr_fd(Y"Unclosed map\n", 2);
 	else if (error == 9)
 		ft_putstr_fd(Y"Unclosed map on space\n", 2);
+	else if (error == 10)
+		ft_putstr_fd(Y"Invalid texture\n", 2);
 	ft_quit(all);
 }
-
 
 void	ft_read(int fd, t_all *all)
 {
@@ -108,6 +109,7 @@ void	ft_map_checker(t_all *all)
 	ft_check_walls(all);
 	ft_check_space(all, -1, -1);
 	ft_check_zero(all);
+	ft_texture(all);
 	// if (!all->c || all->e != 1 || all->p != 1)
 	// 	ft_error(all, all);
 	// ft_check_rect(all, all);
@@ -293,5 +295,41 @@ void	ft_check_zero(t_all *all)
 					ft_error(all, 8);
 			}
 		}
+	}
+}
+
+void	ft_replace_texture(t_all *all, char *direction, int a)
+{
+	char	*tmp;
+
+	tmp = NULL;
+	if (ft_strncmp(all->textures[a], direction, 3))
+		ft_error(all, 10);
+	tmp = ft_substr(all->textures[a], 3, ft_strlen(all->textures[a]));
+	if (!tmp)
+		return ;
+	free(all->textures[a]);
+	all->textures[a] = ft_strdup(tmp);
+	free(tmp);
+}
+
+void	ft_texture(t_all *all)
+{
+	size_t	i;
+	int		rd;
+
+	i = 0;
+	rd = 0;
+	ft_replace_texture(all, "NO ", 0);
+	ft_replace_texture(all, "SO ", 1);
+	ft_replace_texture(all, "WE ", 2);
+	ft_replace_texture(all, "EA ", 3);
+	while (i < 4)
+	{
+		rd = open(all->textures[i], O_RDONLY);
+		if (rd < 0)
+			ft_error(all, 10);
+		close(rd);
+		i++;
 	}
 }

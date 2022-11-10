@@ -1,7 +1,7 @@
-NO assets/xpm/wall_1.xpm
-SO assets/xpm/wall_2.xpm
-WE assets/xpm/wall_4.xpm
-EA assets/xpm/wall_5.xpm
+NO Imgs/new1.xpm
+SO Imgs/new2.xpm
+WE Imgs/new3.xpm
+EA Imgs/new4.xpm
 
 F 25,60,44
 C 255,255,5

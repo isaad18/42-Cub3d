@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:12 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/09 19:09:26 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 20:10:11 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 {
-	// mlx->Ccolor = 0x87CEEB;
 	mlx->Ccolor = 8900331;
-	// mlx->Fcolor = 0x964B00;
 	mlx->Fcolor = 9849600;
 	all->mlx = mlx;
 	all->mlx = mlx;

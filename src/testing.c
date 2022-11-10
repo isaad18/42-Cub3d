@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:29:44 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/08 13:12:54 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 20:45:40 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,19 @@ void	initimgs(t_all *all)
 
 	xx = 0;
 	all->mlx->tex = mlx_xpm_file_to_image(all->mlx
-			->mlx, "Imgs/new2.xpm", &all->mlx->w, &all->mlx->h);
+			->mlx, all->textures[0], &all->mlx->w, &all->mlx->h);
 	all->mlx->text = (int *)mlx_get_data_addr(all->mlx
 			->tex, &all->mlx->b, &all->mlx->h, &all->mlx->w);
 	all->mlx->tex2 = mlx_xpm_file_to_image(all->mlx
-			->mlx, "Imgs/new1.xpm", &all->mlx->w, &all->mlx->h);
+			->mlx, all->textures[1], &all->mlx->w, &all->mlx->h);
 	all->mlx->text2 = (int *)mlx_get_data_addr(all->mlx
 			->tex2, &all->mlx->b, &all->mlx->h, &all->mlx->w);
 	all->mlx->tex3 = mlx_xpm_file_to_image(all->mlx
-			->mlx, "Imgs/new3.xpm", &all->mlx->w, &all->mlx->h);
+			->mlx, all->textures[2], &all->mlx->w, &all->mlx->h);
 	all->mlx->text3 = (int *)mlx_get_data_addr(all->mlx->tex3,
 			&all->mlx->b, &all->mlx->h, &all->mlx->w);
 	all->mlx->tex4 = mlx_xpm_file_to_image(all->mlx
-			->mlx, "Imgs/new4.xpm", &all->mlx->w, &all->mlx->h);
+			->mlx, all->textures[3], &all->mlx->w, &all->mlx->h);
 	all->mlx->text4 = (int *)mlx_get_data_addr(all->mlx->tex4,
 			&all->mlx->b, &all->mlx->h, &all->mlx->w);
 	all->mlx->buffer = malloc(sizeof(int *) * all->size->win_y);

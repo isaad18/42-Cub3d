@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:53:04 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/09 17:18:58 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 20:08:18 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,4 +249,41 @@ char	*ft_itoa(int n)
 	else if (!len && str[1])
 		str[len] = '-';
 	return (str);
+}
+
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while ((str1[i] || str2[i]) && i < n)
+	{
+		if (str1[i] != str2[i])
+			return ((unsigned char) str1[i] - (unsigned char) str2[i]);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*ret;
+	size_t	i;
+	size_t	x;
+	size_t	l;
+
+	i = start;
+	x = 0;
+	if (!s)
+		return (0);
+	l = ft_strlen(s);
+	if (len > l)
+		len = l;
+	ret = (char *)malloc((len + 1) * sizeof(char));
+	if (!ret)
+		return (0);
+	while (i < l && x < len)
+		ret[x++] = s[i++];
+	ret[x] = 0;
+	return (ret);
 }
