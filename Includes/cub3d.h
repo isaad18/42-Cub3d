@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 02:47:44 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/11 03:44:05 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int		print_plz(t_all *all, char **map);
 void	filldown(t_all *all, int y, int x);
 void	null_maker(t_all *all, t_mlx *mlx);
 void	getwallhit(t_all *all, char **map);
+int		check_wall_collisions_x(t_all *all);
 void	mlx_main_loop(t_all *all, char **map);
 void	fill_the_void(t_all *all, int y, int x);
 void	getdrawpos(t_all *all, char **map, int *ii);

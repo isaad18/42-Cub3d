@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   keys1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:43 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/10 22:50:44 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/11 03:43:50 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
+
+int	check_wall_collisions_x(t_all *all)
+{
+	double checker;
+	int 	flag;
+
+	flag = 0;
+	checker = 0.1;
+	while (checker <= all->size->movespeed)
+	{
+		if (all->map[(int)
+				(all->size->posx + all->size->dirx * all->size->movespeed)]
+			[(int)(all->size->posy)] == '1')
+			return (0);
+		checker += 0.1;
+		if (checker > all->size->movespeed && !flag)
+		{
+			checker = all->size->movespeed;
+			flag = 1;
+		}
+	}
+	return (1);
+}
 
 void	keyup(t_all *all)
 {
