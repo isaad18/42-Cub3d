@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:43 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/11 03:43:50 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 03:48:23 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_wall_collisions_x(t_all *all)
 {
-	double checker;
-	int 	flag;
+	double	checker;
+	int		flag;
 
 	flag = 0;
 	checker = 0.1;
