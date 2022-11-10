@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 17:47:33 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:51:15 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_map_checker(t_all *all)
 	ft_color_parse(all);
 	ft_map_valid_char(all, 0, 0);
 	ft_check_walls(all);
-	ft_check_space(all);
+	ft_check_space(all, -1, -1);
 	ft_check_zero(all);
 	// if (!all->c || all->e != 1 || all->p != 1)
 	// 	ft_error(all, all);
@@ -241,12 +241,8 @@ void	ft_check_walls(t_all *all)
 			ft_error(all, 8);
 }
 
-void	ft_check_space(t_all *all)
+void	ft_check_space(t_all *all, int i, int a)
 {
-	int	i;
-	int	a;
-
-	a = -1;
 	while (all->map[++a])
 	{
 		i = -1;
