@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:35:07 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/09 18:54:35 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 22:55:40 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,44 +73,6 @@ char	*ft_char(char *dest, char src)
 	dest[i++] = src;
 	dest[i] = '\0';
 	return (dest);
-}
-
-void	ft_putnbr_base(int nbr, int nbase, char *num_base, char *base)
-{
-	if (nbr >= nbase)
-	{
-		ft_putnbr_base((nbr / nbase), nbase, num_base, base);
-	}
-	ft_char(num_base, base[nbr % nbase]);
-}
-
-char	*ft_put_nbr(int nbr, char *base, int sign, int i)
-{
-	int		nbase;
-	int		pbase;
-	char	*num;
-
-	nbase = ft_strlen(base);
-	pbase = ft_lnbr(nbr, nbase);
-	if (sign % 2 != 0 && nbr != 0)
-	{
-		num = malloc((pbase + 2) * sizeof(char));
-		if (!num)
-			return (0);
-		while (++i < pbase + 2)
-			num[i] = '\0';
-		num[0] = '-';
-	}
-	else
-	{
-		num = malloc((pbase + 1) * sizeof(char));
-		if (!num)
-			return (0);
-		while (++i < pbase + 1)
-			num[i] = '\0';
-	}
-	ft_putnbr_base(nbr, nbase, num, base);
-	return (num);
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)

@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:34:49 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/08 13:12:54 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 22:54:14 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,33 @@ void	filldown(t_all *all, int y, int x)
 {
 	while (y < all->size->win_y)
 	{
-		if (all->mlx->drawEnd < 0 || all->mlx->drawEnd < all->mlx->drawStart)
+		if (all->mlx->drawend < 0 || all->mlx->drawend < all->mlx->drawstart)
 			break ;
-		all->mlx->buffer[y][x] = all->mlx->Fcolor;
+		all->mlx->buffer[y][x] = all->mlx->fcolor;
 		y++;
 	}
 }
 
 void	fill_the_void(t_all *all, int y, int x)
 {
-	while (y < all->mlx->drawStart)
+	while (y < all->mlx->drawstart)
 	{
-		if (all->mlx->drawStart < 0 || all->mlx->drawStart > all->mlx->drawEnd)
+		if (all->mlx->drawstart < 0 || all->mlx->drawstart > all->mlx->drawend)
 			break ;
-		all->mlx->buffer[y][x] = all->mlx->Ccolor;
+		all->mlx->buffer[y][x] = all->mlx->ccolor;
 		y++;
 	}
-	y = all->mlx->drawEnd;
+	y = all->mlx->drawend;
 	filldown(all, y, x);
 	y = 0;
 	while (y < all->size->win_y)
 	{
 		if (all->mlx->buffer[y][x] == 0 && all->size->updown > 0 && \
-		(y < all->mlx->drawStart || y > all->mlx->drawEnd))
-			all->mlx->buffer[y][x] = all->mlx->Ccolor;
+		(y < all->mlx->drawstart || y > all->mlx->drawend))
+			all->mlx->buffer[y][x] = all->mlx->ccolor;
 		if (all->mlx->buffer[y][x] == 0 && all->size->updown < 0 && \
-		(y < all->mlx->drawStart || y > all->mlx->drawEnd))
-			all->mlx->buffer[y][x] = all->mlx->Fcolor;
+		(y < all->mlx->drawstart || y > all->mlx->drawend))
+			all->mlx->buffer[y][x] = all->mlx->fcolor;
 		y++;
 	}
 }
@@ -78,14 +78,14 @@ void	gettexture(t_all *all, int ii)
 {
 	if (ii == 1)
 		all->size->color = mlx_get_color_value(all->mlx->mlx, all->mlx->text
-			[(64 * all->mlx->texY) + all->mlx->texX]);
+			[(64 * all->mlx->texy) + all->mlx->texx]);
 	else if (ii == 2)
 		all->size->color = mlx_get_color_value(all->mlx->mlx, all->mlx
-				->text2[(64 * all->mlx->texY) + all->mlx->texX]);
+				->text2[(64 * all->mlx->texy) + all->mlx->texx]);
 	else if (ii == 3)
 		all->size->color = mlx_get_color_value(all->mlx->mlx, all->mlx
-				->text3[(64 * all->mlx->texY) + all->mlx->texX]);
+				->text3[(64 * all->mlx->texy) + all->mlx->texx]);
 	else if (ii == 4)
 		all->size->color = mlx_get_color_value(all->mlx->mlx, all->mlx
-				->text4[(64 * all->mlx->texY) + all->mlx->texX]);
+				->text4[(64 * all->mlx->texy) + all->mlx->texx]);
 }

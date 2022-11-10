@@ -6,7 +6,7 @@
 #    By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 12:59:15 by ytouab            #+#    #+#              #
-#    Updated: 2022/11/09 17:56:36 by ytouab           ###   ########.fr        #
+#    Updated: 2022/11/10 22:29:05 by ytouab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,12 @@ RCS	= ./src/cub3d.c\
 ./src/parsing.c \
 ./src/parsing_utils.c \
 ./src/convertbase.c \
+./src/number_parsing_utils.c \
+./src/arr_utils.c \
+./src/basic_utils.c \
+./src/colors.c \
+./src/error.c \
+./src/texture.c \
 
 OBJS	= $(RCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:29:44 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/10 20:45:40 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 22:54:14 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@ void	mlx_main_loop(t_all *all, char **map)
 
 void	getandfillwalls(t_all *all, int y, int x, int ii)
 {
-	all->size->wallX = (double)all->size->wallX - (int)all->size->wallX;
-	all->mlx->texX = (int)(all->size->wallX * (double)64);
-	if (all->size->side == 0 && all->size->rayDirX > 0)
-		all->mlx->texX = 64 - all->mlx->texX - 1;
-	if (all->size->side == 1 && all->size->rayDirY < 0)
-		all->mlx->texX = 64 - all->mlx->texX - 1;
-	all->size->step = 1.0 * 64 / all->mlx->lineHeight;
-	all->size->texPos = (all->mlx->drawStart - ((all->size->win_y / 2)
-				+ all->size->updown) + all->mlx->lineHeight / 2)
+	all->size->wallx = (double)all->size->wallx - (int)all->size->wallx;
+	all->mlx->texx = (int)(all->size->wallx * (double)64);
+	if (all->size->side == 0 && all->size->raydirx > 0)
+		all->mlx->texx = 64 - all->mlx->texx - 1;
+	if (all->size->side == 1 && all->size->raydiry < 0)
+		all->mlx->texx = 64 - all->mlx->texx - 1;
+	all->size->step = 1.0 * 64 / all->mlx->lineheight;
+	all->size->texpos = (all->mlx->drawstart - ((all->size->win_y / 2)
+				+ all->size->updown) + all->mlx->lineheight / 2)
 		* all->size->step;
-	y = all->mlx->drawStart;
-	while (y < all->mlx->drawEnd)
+	y = all->mlx->drawstart;
+	while (y < all->mlx->drawend)
 	{
-		all->mlx->texY = (int)all->size->texPos & (64 - 1);
-		all->size->texPos += all->size->step;
+		all->mlx->texy = (int)all->size->texpos & (64 - 1);
+		all->size->texpos += all->size->step;
 		gettexture(all, ii);
 		all->mlx->buffer[y][x] = all->size->color;
 		y++;
@@ -118,7 +118,7 @@ int	print_plz(t_all *all, char **map)
 		x++;
 	}
 	drawall(all, all->mlx->buffer);
-	all->size->moveSpeed = 0.12;
-	all->size->rotSpeed = 0.055;
+	all->size->movespeed = 0.12;
+	all->size->rotspeed = 0.055;
 	return (0);
 }

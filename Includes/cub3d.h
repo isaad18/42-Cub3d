@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 20:43:02 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 22:54:14 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,44 +45,44 @@ typedef struct s_size
 {
 	int		hit;
 	int		side;
-	int		mapX;
-	int		mapY;
-	double	dirX;
-	double	dirY;
-	double	posX;
-	double	posY;
+	int		mapx;
+	int		mapy;
+	double	dirx;
+	double	diry;
+	double	posx;
+	double	posy;
 	double	step;
-	double	wallX;
+	double	wallx;
 	int		where;
 	int		win_x;
 	int		win_y;
-	int		stepX;
-	int		stepY;
+	int		stepx;
+	int		stepy;
 	int		color;
-	double	planeX;
-	double	planeY;
-	double	texPos;
+	double	planex;
+	double	planey;
+	double	texpos;
 	int		updown;
-	int		drawEnd;
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	rotSpeed;
-	double	moveSpeed;
-	int		drawStart;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	int		lineHeight;
-	double	deltaDistY;
-	double	perpWallDist;
+	int		drawend;
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	double	rotspeed;
+	double	movespeed;
+	int		drawstart;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	int		lineheight;
+	double	deltadisty;
+	double	perpwalldist;
 }			t_size;
 
 typedef struct s_mlx
 {
 	void		*mlx;
-	int			texX;
-	int			texY;
+	int			texx;
+	int			texy;
 	void		*tex;
 	int			*text;
 	void		*tex2;
@@ -91,13 +91,13 @@ typedef struct s_mlx
 	int			*text3;
 	void		*tex4;
 	int			*text4;
-	long int	Ccolor;
-	long int	Fcolor;
-	int			drawEnd;
+	long int	ccolor;
+	long int	fcolor;
+	int			drawend;
 	void		*mlx_win;
 	int			**buffer;
-	int			drawStart;
-	int			lineHeight;
+	int			drawstart;
+	int			lineheight;
 	void		*img;
 	int			b;
 	int			h;
