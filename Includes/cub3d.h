@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 00:06:19 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 02:47:44 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,12 +171,13 @@ char	*ft_itoa(int n);
 void	ft_color_chars_checker(t_all *all, size_t i, size_t a, int comma);
 char	*ft_rgb_to_hex(t_all *all, char *rgb, size_t i);
 void	ft_color_parse(t_all *all);
-void	ft_map_valid_char(t_all *all, size_t i, size_t nl);
+void	ft_map_valid_char(t_all *all, int i, size_t nl);
 void	ft_check_walls(t_all *all);
 void	ft_check_space(t_all *all, int i, int a);
 void	ft_check_zero(t_all *all);
 void	ft_replace_texture(t_all *all, char *direction, int a);
 void	ft_texture(t_all *all);
+void	ft_player_position(t_all *all);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 char	*ft_put_nbr(int nbr, char *base, int sign, int i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:24:52 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/11 00:06:58 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 02:12:42 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	check_w(char c, t_all *all)
 		(all->detector_flag)++;
 	}
 	if (all->detector_flag > 1)
-		ft_error(all, 7);
+		ft_error(all, 5);
 }
 
 void	check_pos(char c, t_all *all)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:12 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/10 23:39:56 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 03:01:32 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 	ft_bzero(mlx, sizeof(t_mlx));
 	ft_bzero(all, sizeof(t_all));
 	all->mlx = mlx;
-	size->posx = 5;
-	size->posy = 14;
+	size->posx = 3;
+	size->posy = 27;
 	direction(size);
 	size->win_x = 960;
 	size->win_y = 540;

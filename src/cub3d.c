@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 20:33:18 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 00:07:41 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 03:12:21 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,42 @@ void	ft_map_checker(t_all *all)
 	all->colors = ft_arr_dup(all->splmap, 4, 2);
 	all->map = ft_arr_dup(all->splmap, 6, ft_arr_len(all->splmap) - 6);
 	ft_color_parse(all);
-	ft_map_valid_char(all, 0, 0);
+	ft_map_valid_char(all, -1, 0);
 	if (all->detector_flag == 0)
-		ft_error(all, 7);
+		ft_error(all, 5);
 	ft_check_walls(all);
 	ft_check_space(all, -1, -1);
 	ft_check_zero(all);
 	ft_texture(all);
+	ft_player_position(all);
+}
+
+void	ft_player_position(t_all *all)
+{
+	int	x;
+	int	y;
+	int	flag;
+
+	y = -1;
+	flag = 0;
+	while (all->map[++y])
+	{
+		x = -1;
+		while (all->map[y][++x])
+		{
+			if (all->map[y][x] == 'E' || all->map[y][x] == 'S'
+				|| all->map[y][x] == 'W' || all->map[y][x] == 'N')
+			{
+				all->map[y][x] = 'P';
+				flag = 1;
+				break ;
+			}
+		}
+		if (flag)
+			break ;
+	}
+	all->size->posx = (double)y;
+	all->size->posy = (double)x;
 }
 
 int	main(int argc, char **argv)

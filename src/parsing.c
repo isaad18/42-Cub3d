@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 23:59:23 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 03:15:20 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,16 @@ void	ft_map_extension(t_all *all)
 		ft_error(all, 2);
 }
 
-void	ft_map_valid_char(t_all *all, size_t i, size_t nl)
+void	ft_map_valid_char(t_all *all, int i, size_t nl)
 {
-	while (all->mapl[i] && nl < 9)
+	while (all->mapl[++i] && nl < 9)
 	{
 		if (all->mapl[i] == '\n')
 			nl++;
-		if (nl == 4 || nl == 7)
-			;
-		else if (all->mapl[i] == '\n'
-			&& all->mapl[i + 1] == '\n' && all->mapl[i + 2])
-			ft_error(all, 5);
-		i++;
+		if (((all->mapl[i] == '\n')
+				&& (all->mapl[i + 1] == '\n') && (all->mapl[i + 2])))
+			if ((nl != 4 && nl != 7))
+				ft_error(all, 5);
 	}
 	while (all->mapl[i])
 	{
