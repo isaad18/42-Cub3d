@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 20:33:18 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/09 22:23:23 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 13:40:07 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ int	main(int argc, char **argv)
 	else
 		ft_error(&all, 1);
 }
-

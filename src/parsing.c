@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/09 23:17:48 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:47:33 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ void	ft_error(t_all *all, int error)
 	else if (error == 6)
 		ft_putstr_fd(Y"Invalid Color\n", 2);
 	else if (error == 7)
-		ft_putstr_fd(Y"Invalid Chars in Map\n", 2);
+		ft_putstr_fd(Y"Invalid chars in map\n", 2);
+	else if (error == 8)
+		ft_putstr_fd(Y"Unclosed map\n", 2);
+	else if (error == 9)
+		ft_putstr_fd(Y"Unclosed map on space\n", 2);
 	ft_quit(all);
 }
 
@@ -100,8 +104,10 @@ void	ft_map_checker(t_all *all)
 	ft_arr_print(all->colors);
 	ft_arr_print(all->map);
 	ft_color_parse(all);
-	ft_map_valid_char(all);
-	// ft_map_valid_char(all);
+	ft_map_valid_char(all, 0, 0);
+	ft_check_walls(all);
+	ft_check_space(all);
+	ft_check_zero(all);
 	// if (!all->c || all->e != 1 || all->p != 1)
 	// 	ft_error(all, all);
 	// ft_check_rect(all, all);
@@ -185,20 +191,17 @@ void	ft_color_parse(t_all *all)
 	free(cc);
 }
 
-void	ft_map_valid_char(t_all *all)
+void	ft_map_valid_char(t_all *all, size_t i, size_t nl)
 {
-	size_t	i;
-	size_t	nl;
-
-	i = 0;
-	nl = 0;
 	while (all->mapl[i] && nl < 9)
 	{
-		// if ((nl == 4 && all->mapl[i] == '\n' && all->mapl[i + 1] != '\n')
-		// 	|| (nl == 7 && all->mapl[i] == '\n' && all->mapl[i + 1] != '\n'))
-		// 	ft_error(all, 5);
 		if (all->mapl[i] == '\n')
 			nl++;
+		if (nl == 4 || nl == 7)
+			;
+		else if (all->mapl[i] == '\n'
+			&& all->mapl[i + 1] == '\n' && all->mapl[i + 2])
+			ft_error(all, 5);
 		i++;
 	}
 	while (all->mapl[i])
@@ -217,36 +220,82 @@ void	ft_map_valid_char(t_all *all)
 	}
 }
 
-// void	ft_check_rect(t_all *all)
-// {
-// 	size_t	i;
+void	ft_check_walls(t_all *all)
+{
+	int	i;
 
-// 	i = 0;
-// 	all->width = ft_strlen(all->map[i]);
-// 	while (all->map[i])
-// 	{
-// 		if (all->width != ft_strlen(all->map[i]))
-// 			ft_error(all, all);
-// 		i++;
-// 	}
-// }
+	i = -1;
+	while (all->map[++i])
+		if ((all->map[i][0] != '1' && all->map[i][0] != ' ')
+			|| (all->map[i][ft_strlen(all->map[i]) - 1] != '1'
+			&& all->map[i][ft_strlen(all->map[i]) - 1] != ' '))
+			ft_error(all, 8);
+	i = -1;
+	while (++i < (int)ft_strlen(all->map[0]))
+		if (all->map[0][i] != '1' && all->map[0][i] != ' ')
+			ft_error(all, 8);
+	i = -1;
+	while (++i < (int)ft_strlen(all->map[ft_arr_len(all->map) - 1]))
+		if (all->map[ft_arr_len(all->map) - 1][i] != '1'
+		&& all->map[ft_arr_len(all->map) - 1][i] != ' ')
+			ft_error(all, 8);
+}
 
-// void	ft_check_walls(t_all *all)
-// {
-// 	size_t	i;
+void	ft_check_space(t_all *all)
+{
+	int	i;
+	int	a;
 
-// 	i = 0;
-// 	while (all->map[i])
-// 	{
-// 		if (all->map[i][0] != '1' || all->map[i][all->width - 1] != '1')
-// 			ft_error(all, all);
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < all->width)
-// 	{
-// 		if (all->map[0][i] != '1' || all->map[all->height - 1][i] != '1')
-// 			ft_error(all, all);
-// 		i++;
-// 	}
-// }
+	a = -1;
+	while (all->map[++a])
+	{
+		i = -1;
+		while (all->map[a][++i])
+		{
+			if (all->map[a][i] == ' ')
+			{
+				if (all->map[a][i + 1] && (all->map[a][i + 1] != '1'
+					&& all->map[a][i + 1] != ' '))
+					ft_error(all, 9);
+				if (i != 0 && all->map[a][i - 1] && (all->map[a][i - 1] != '1'
+					&& all->map[a][i - 1] != ' '))
+					ft_error(all, 9);
+				if (all->map[a + 1] && all->map[a + 1][i]
+					&& (all->map[a + 1][i] != '1' && all->map[a + 1][i] != ' '))
+					ft_error(all, 9);
+				if (a != 0 && all->map[a - 1] && all->map[a - 1][i]
+				&& (all->map[a - 1][i] != '1' && all->map[a - 1][i] != ' '))
+					ft_error(all, 9);
+			}
+		}
+	}
+}
+
+void	ft_check_zero(t_all *all)
+{
+	int	i;
+	int	a;
+
+	a = -1;
+	while (all->map[++a])
+	{
+		i = -1;
+		while (all->map[a][++i])
+		{
+			if (all->map[a][i] == '0')
+			{
+				if (!all->map[a][i + 1] || (all->map[a][i + 1] == ' '))
+					ft_error(all, 8);
+				if (i != 0 && (!all->map[a][i - 1]
+					|| all->map[a][i - 1] == ' '))
+					ft_error(all, 8);
+				if (all->map[a + 1] && (!all->map[a + 1][i]
+					|| all->map[a + 1][i] == ' '))
+					ft_error(all, 8);
+				if (a != 0 && all->map[a - 1] && (!all->map[a - 1][i]
+					|| (all->map[a - 1][i] == ' ')))
+					ft_error(all, 8);
+			}
+		}
+	}
+}
