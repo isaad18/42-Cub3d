@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:12 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/10 22:53:43 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 23:39:56 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,15 @@
 
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all)
 {
-	mlx->ccolor = 0;
-	mlx->fcolor = 0;
+	ft_bzero(size, sizeof(t_size));
+	ft_bzero(mlx, sizeof(t_mlx));
+	ft_bzero(all, sizeof(t_all));
 	all->mlx = mlx;
-	all->mlx = mlx;
-	all->exit = 0;
-	all->textures = NULL;
-	all->colors = NULL;
-	all->splmap = NULL;
-	all->map = NULL;
-	all->mapl = NULL;
-	all->map_file = NULL;
-	size->where = 0;
 	size->posx = 5;
 	size->posy = 14;
-	if (size->where == 0)
-	{
-		size->dirx = -1;
-		size->diry = 0;
-		size->planex = 0;
-		size->planey = 0.66;
-	}
-	else if (size->where == 1)
-	{
-		size->dirx = 0;
-		size->diry = 1;
-		size->planex = 0.66;
-		size->planey = 0;
-	}
-	else if (size->where == 2)
-	{
-		size->dirx = 1;
-		size->diry = 0;
-		size->planex = 0;
-		size->planey = -0.66;
-	}
-	else if (size->where == 3)
-	{
-		size->dirx = 0;
-		size->diry = -1;
-		size->planex = -0.66;
-		size->planey = 0;
-	}
+	direction(size);
 	size->win_x = 960;
 	size->win_y = 540;
-	size->camerax = 0;
-	size->raydirx = 0;
-	size->raydiry = 0;
-	size->mapx = 0;
-	size->mapy = 0;
-	size->sidedistx = 0;
-	size->sidedisty = 0;
-	size->deltadistx = 0;
-	size->deltadisty = 0;
-	size->perpwalldist = 0;
-	size->stepx = 0;
-	size->stepy = 0;
-	size->hit = 0;
-	size->side = 0;
-	size->updown = 0;
-	size->lineheight = 0;
-	size->drawstart = 0;
-	size->drawend = 0;
 	all->size = size;
 }
 

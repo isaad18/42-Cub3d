@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+         #
+#    By: isaad <isaad@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 12:59:15 by ytouab            #+#    #+#              #
-#    Updated: 2022/11/10 22:29:05 by ytouab           ###   ########.fr        #
+#    Updated: 2022/11/10 23:34:39 by isaad            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ RCS	= ./src/cub3d.c\
 ./src/keys1.c \
 ./src/drawHelper.c \
 ./src/init.c \
+./src/ft_bzero.c \
+./src/init2.c \
 ./src/MKcmd.c \
 ./src/draw.c \
 ./src/parsing.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 22:54:14 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/10 23:55:21 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,16 +129,20 @@ void	key124(t_all *all);
 void	initdir(t_all *all);
 void	keydown(t_all *all);
 void	initimgs(t_all *all);
-void	drawall(t_all *all, int **buffer);
+void	where_0(t_size *size);
+void	direction(t_size *size);
 int		key(int keycode, t_all *all);
-void	filldown(t_all *all, int y, int x);
-void	fill_the_void(t_all *all, int y, int x);
+void	size_init_half(t_size *size);
 void	gettexture(t_all *all, int ii);
 void	initdrawing(t_all *all, int x);
 int		mouse(int x, int y, t_all *all);
+void	drawall(t_all *all, int **buffer);
 int		print_plz(t_all *all, char **map);
+void	filldown(t_all *all, int y, int x);
+void	null_maker(t_all *all, t_mlx *mlx);
 void	getwallhit(t_all *all, char **map);
 void	mlx_main_loop(t_all *all, char **map);
+void	fill_the_void(t_all *all, int y, int x);
 void	getdrawpos(t_all *all, char **map, int *ii);
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all);
 
@@ -183,5 +187,7 @@ int		ft_checker(char *base);
 
 void	ft_error(t_all *all, int error);
 int		ft_quit(t_all *all);
+
+void	ft_bzero(void *s, unsigned long n);
 
 #endif
