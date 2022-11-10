@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:24:52 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/11 00:02:38 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 00:06:58 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,39 +49,37 @@ void	direction(t_size *size)
 	}
 }
 
-void	check_w(char c, t_all *all, int *detector)
+void	check_w(char c, t_all *all)
 {
 	if (c == 'W')
 	{
 		all->size->where = 3;
 		direction(all->size);
-		(*detector)++;
+		(all->detector_flag)++;
 	}
-	if (*detector > 1)
+	if (all->detector_flag > 1)
 		ft_error(all, 7);
 }
 
 void	check_pos(char c, t_all *all)
 {
-	static int	detector;
-
 	if (c == 'N')
 	{
 		all->size->where = 0;
 		direction(all->size);
-		detector++;
+		all->detector_flag++;
 	}
 	if (c == 'E')
 	{
 		all->size->where = 1;
 		direction(all->size);
-		detector++;
+		all->detector_flag++;
 	}
 	if (c == 'S')
 	{
 		all->size->where = 2;
 		direction(all->size);
-		detector++;
+		all->detector_flag++;
 	}
-	check_w(c, all, &detector);
+	check_w(c, all);
 }

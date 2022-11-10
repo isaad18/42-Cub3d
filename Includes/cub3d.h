@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 00:00:52 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 00:06:19 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct s_all
 	char	**colors;
 	char	**map;
 	int		exit;
+	int		detector_flag;
 }			t_all;
 /*--------- Structs ---------*/
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 20:33:18 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 22:26:33 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/11 00:07:41 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_map_checker(t_all *all)
 	all->map = ft_arr_dup(all->splmap, 6, ft_arr_len(all->splmap) - 6);
 	ft_color_parse(all);
 	ft_map_valid_char(all, 0, 0);
+	if (all->detector_flag == 0)
+		ft_error(all, 7);
 	ft_check_walls(all);
 	ft_check_space(all, -1, -1);
 	ft_check_zero(all);
