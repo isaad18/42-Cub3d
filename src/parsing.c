@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 23:52:18 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/10 23:59:23 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,6 @@ void	ft_map_extension(t_all *all)
 	if (!(all->map_file[i] == 'b' && all->map_file[i - 1] == 'u'
 			&& all->map_file[i - 2] == 'c' && all->map_file[i - 3] == '.'))
 		ft_error(all, 2);
-}
-
-void	check_pos(char c, t_all *all)
-{
-	if (c == 'N')
-	{
-		all->size->where = 0;
-		direction(all->size);
-	}
-	if (c == 'E')
-	{
-		all->size->where = 1;
-		direction(all->size);
-	}
-	if (c == 'S')
-	{
-		all->size->where = 2;
-		direction(all->size);
-	}
-	if (c == 'W')
-	{
-		all->size->where = 3;
-		direction(all->size);
-	}
 }
 
 void	ft_map_valid_char(t_all *all, size_t i, size_t nl)

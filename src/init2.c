@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:24:52 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/10 23:39:23 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 00:02:38 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,41 @@ void	direction(t_size *size)
 		size->planex = -0.66;
 		size->planey = 0;
 	}
+}
+
+void	check_w(char c, t_all *all, int *detector)
+{
+	if (c == 'W')
+	{
+		all->size->where = 3;
+		direction(all->size);
+		(*detector)++;
+	}
+	if (*detector > 1)
+		ft_error(all, 7);
+}
+
+void	check_pos(char c, t_all *all)
+{
+	static int	detector;
+
+	if (c == 'N')
+	{
+		all->size->where = 0;
+		direction(all->size);
+		detector++;
+	}
+	if (c == 'E')
+	{
+		all->size->where = 1;
+		direction(all->size);
+		detector++;
+	}
+	if (c == 'S')
+	{
+		all->size->where = 2;
+		direction(all->size);
+		detector++;
+	}
+	check_w(c, all, &detector);
 }

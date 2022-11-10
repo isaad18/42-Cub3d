@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 23:55:21 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 00:00:52 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ void	ft_putnbr_base(int nbr, int nbase, char *num_base, char *base);
 char	*ft_char(char *dest, char src);
 int		ft_lnbr(int nbr, int base_lenght);
 int		ft_inbase(char c, char *base);
+void	check_pos(char c, t_all *all);
 int		ft_checker(char *base);
 
 void	ft_error(t_all *all, int error);
