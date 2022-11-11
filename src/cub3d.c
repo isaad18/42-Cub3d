@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 20:33:18 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 07:54:09 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 10:29:01 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,21 @@ void	ft_player_position(t_all *all)
 	}
 	all->size->posx = (double)y + 0.5;
 	all->size->posy = (double)x + 0.5;
+}
+
+void	ft_map_extension(t_all *all)
+{
+	size_t	i;
+
+	i = 0;
+	if (all->map_file[0] == '.' || ft_strlen(all->map_file) < 5)
+		ft_error(all, 2);
+	while (all->map_file[i])
+		i++;
+	i--;
+	if (!(all->map_file[i] == 'b' && all->map_file[i - 1] == 'u'
+			&& all->map_file[i - 2] == 'c' && all->map_file[i - 3] == '.'))
+		ft_error(all, 2);
 }
 
 int	main(int argc, char **argv)

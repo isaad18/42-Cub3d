@@ -6,38 +6,30 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 03:15:20 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/11 10:28:51 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
 
-void	ft_map_extension(t_all *all)
+void	ft_map_valid_structure(t_all *all, int *i, size_t *nl)
 {
-	size_t	i;
-
-	i = 0;
-	if (all->map_file[0] == '.' || ft_strlen(all->map_file) < 5)
-		ft_error(all, 2);
-	while (all->map_file[i])
-		i++;
-	i--;
-	if (!(all->map_file[i] == 'b' && all->map_file[i - 1] == 'u'
-			&& all->map_file[i - 2] == 'c' && all->map_file[i - 3] == '.'))
-		ft_error(all, 2);
+	while (all->mapl[++(*i)] && *nl < 9)
+	{
+		if (all->mapl[*i] == '\n')
+		{
+			*nl = *nl + 1;
+			if (((*nl == 7 || *nl == 4) && !((all->mapl[*i + 1] == '\n')
+						&& (all->mapl[*i + 2]))) || ((*nl != 7 && *nl != 4)
+					&& ((all->mapl[*i + 1] == '\n') && (all->mapl[*i + 2]))))
+				ft_error(all, 5);
+		}
+	}
 }
 
 void	ft_map_valid_char(t_all *all, int i, size_t nl)
 {
-	while (all->mapl[++i] && nl < 9)
-	{
-		if (all->mapl[i] == '\n')
-			nl++;
-		if (((all->mapl[i] == '\n')
-				&& (all->mapl[i + 1] == '\n') && (all->mapl[i + 2])))
-			if ((nl != 4 && nl != 7))
-				ft_error(all, 5);
-	}
+	ft_map_valid_structure(all, &i, &nl);
 	while (all->mapl[i])
 	{
 		if (all->mapl[i] == '1' || all->mapl[i] == '0' || all->mapl[i] == 'N'
@@ -47,7 +39,7 @@ void	ft_map_valid_char(t_all *all, int i, size_t nl)
 			check_pos(all->mapl[i], all);
 			if (all->mapl[i] == '\n'
 				&& all->mapl[i + 1] == '\n' && all->mapl[i + 2])
-				ft_error(all, 7);
+				ft_error(all, 8);
 		}
 		else
 			ft_error(all, 7);
