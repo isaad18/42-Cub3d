@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:43 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/11 03:48:23 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 07:23:11 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,22 @@ int	check_wall_collisions_x(t_all *all)
 
 void	keyup(t_all *all)
 {
-	all->size->updown += 7;
-	mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
-	print_plz(all, all->map);
+	if (all->size->updown < all->size->win_y)
+	{
+		all->size->updown += 7;
+		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+		print_plz(all, all->map);
+	}
 }
 
 void	keydown(t_all *all)
 {
-	all->size->updown -= 7;
-	mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
-	print_plz(all, all->map);
+	if ((all->size->updown * -1) < all->size->win_y)
+	{
+		all->size->updown -= 7;
+		mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+		print_plz(all, all->map);
+	}
 }
 
 void	key123(t_all *all)

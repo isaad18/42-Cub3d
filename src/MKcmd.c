@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MKcmd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:23 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/08 13:12:54 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/11 07:20:12 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	key(int keycode, t_all *all)
 		key124(all);
 	if (keycode == 123)
 		key123(all);
+	if (keycode == 126)
+		keyup(all);
+	if (keycode == 125)
+		keydown(all);
 	return (0);
 }
 
