@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 20:33:18 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 03:12:21 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/11 07:54:09 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void	ft_player_position(t_all *all)
 		if (flag)
 			break ;
 	}
-	all->size->posx = (double)y;
-	all->size->posy = (double)x;
+	all->size->posx = (double)y + 0.5;
+	all->size->posy = (double)x + 0.5;
 }
 
 int	main(int argc, char **argv)
