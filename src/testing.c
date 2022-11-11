@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:29:44 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/11 03:43:08 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/11 17:43:48 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	mlx_main_loop(t_all *all, char **map)
 	size->win_x, all->size->win_y, "cub3d");
 	initimgs(all);
 	print_plz(all, map);
+	mlx_mouse_hook(all->mlx->mlx_win, mouse_hook, all);
 	mlx_hook(all->mlx->mlx_win, 2, (1L << 0), key, all);
 	mlx_hook(all->mlx->mlx_win, 6, 1L << 6, mouse, all);
 	mlx_hook(all->mlx->mlx_win, 17, 1L << 5, ft_quit, all);
@@ -61,14 +62,7 @@ void	initimgs(t_all *all)
 			->mlx, all->textures[1], &all->mlx->w, &all->mlx->h);
 	all->mlx->text2 = (int *)mlx_get_data_addr(all->mlx
 			->tex2, &all->mlx->b, &all->mlx->h, &all->mlx->w);
-	all->mlx->tex3 = mlx_xpm_file_to_image(all->mlx
-			->mlx, all->textures[2], &all->mlx->w, &all->mlx->h);
-	all->mlx->text3 = (int *)mlx_get_data_addr(all->mlx->tex3,
-			&all->mlx->b, &all->mlx->h, &all->mlx->w);
-	all->mlx->tex4 = mlx_xpm_file_to_image(all->mlx
-			->mlx, all->textures[3], &all->mlx->w, &all->mlx->h);
-	all->mlx->text4 = (int *)mlx_get_data_addr(all->mlx->tex4,
-			&all->mlx->b, &all->mlx->h, &all->mlx->w);
+	extra_imgs(all);
 	all->mlx->buffer = malloc(sizeof(int *) * all->size->win_y);
 	while (xx < all->size->win_y)
 	{

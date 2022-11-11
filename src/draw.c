@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:34:49 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/10 22:54:14 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/11 18:00:25 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	drawall(t_all *all, int **buffer)
 	}
 	mlx_put_image_to_window(all->mlx->mlx,
 		all->mlx->mlx_win, all->mlx->img, 0, 0);
+	draw_sprites(all);
+	mlx_destroy_image(all->mlx->mlx, all->mlx->img);
 }
 
 void	filldown(t_all *all, int y, int x)

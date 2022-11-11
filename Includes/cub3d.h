@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 10:25:34 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/11 18:00:08 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct s_mlx
 	int			*text3;
 	void		*tex4;
 	int			*text4;
+	void		*tex5;
+	void		*tex6;
 	long int	ccolor;
 	long int	fcolor;
 	int			drawend;
@@ -116,6 +118,7 @@ typedef struct s_all
 	char	**map;
 	int		exit;
 	int		detector_flag;
+	int		flag;
 }			t_all;
 /*--------- Structs ---------*/
 
@@ -131,7 +134,9 @@ void	initdir(t_all *all);
 void	keydown(t_all *all);
 void	initimgs(t_all *all);
 void	where_0(t_size *size);
+void	extra_imgs(t_all *all);
 void	direction(t_size *size);
+void	draw_sprites(t_all *all);
 int		key(int keycode, t_all *all);
 void	size_init_half(t_size *size);
 void	gettexture(t_all *all, int ii);
@@ -146,6 +151,7 @@ int		check_wall_collisions_x(t_all *all);
 void	mlx_main_loop(t_all *all, char **map);
 void	fill_the_void(t_all *all, int y, int x);
 void	getdrawpos(t_all *all, char **map, int *ii);
+int		mouse_hook(int keycode, int x, int y, t_all *all);
 void	mlx_struct_init(t_mlx *mlx, t_size *size, t_all *all);
 
 /*--------- Parsing Functions ---------*/

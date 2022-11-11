@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 22:24:04 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 22:56:09 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/11 18:01:26 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,14 @@ int	ft_quit(t_all *all)
 		mlx_destroy_image(all->mlx->mlx, all->mlx->tex);
 	if (all->mlx->tex2)
 		mlx_destroy_image(all->mlx->mlx, all->mlx->tex2);
-	if (all->mlx->img)
-		mlx_destroy_image(all->mlx->mlx, all->mlx->img);
+	if (all->mlx->tex3)
+		mlx_destroy_image(all->mlx->mlx, all->mlx->tex3);
+	if (all->mlx->tex4)
+		mlx_destroy_image(all->mlx->mlx, all->mlx->tex4);
+	if (all->mlx->tex5)
+		mlx_destroy_image(all->mlx->mlx, all->mlx->tex5);
+	if (all->mlx->tex6)
+		mlx_destroy_image(all->mlx->mlx, all->mlx->tex6);
 	if (all->mlx->buffer)
 		while (++i < all->size->win_y)
 			free(all->mlx->buffer[i]);
