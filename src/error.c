@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 22:24:04 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 18:01:26 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/13 00:33:23 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_quit(t_all *all)
 	int	excode;
 
 	i = -1;
-	(void)i;
 	excode = all->exit;
 	if (all->mlx->mlx_win)
 		mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
@@ -38,6 +37,7 @@ int	ft_quit(t_all *all)
 		while (++i < all->size->win_y)
 			free(all->mlx->buffer[i]);
 	free(all->mlx->buffer);
+	ft_free_all(all);
 	exit(excode);
 }
 
@@ -67,4 +67,16 @@ void	ft_error(t_all *all, int error)
 	else if (error == 10)
 		ft_putstr_fd(Y"Invalid texture\n", 2);
 	ft_quit(all);
+}
+
+void	ft_free_all(t_all *all)
+{
+	if (all->map_file)
+		free(all->map_file);
+	if (all->mapl)
+		free(all->mapl);
+	ft_free_arr(all->splmap);
+	ft_free_arr(all->textures);
+	ft_free_arr(all->colors);
+	ft_free_arr(all->map);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 18:00:08 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/13 00:30:45 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ char	*ft_strjoin(char *s1, char *s2);
 char	**ft_arr_dup(char **arr, size_t start, size_t size);
 size_t	ft_arr_len(char **arr);
 void	ft_arr_print(char **arr);
+void	ft_free_arr(char **arr);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
@@ -198,6 +199,7 @@ int		ft_checker(char *base);
 
 void	ft_error(t_all *all, int error);
 int		ft_quit(t_all *all);
+void	ft_free_all(t_all *all);
 
 void	ft_bzero(void *s, unsigned long n);
 
