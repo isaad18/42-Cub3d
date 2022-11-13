@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:23 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/11 07:20:12 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/13 16:08:25 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,33 @@ int	key(int keycode, t_all *all)
 		ft_quit(all);
 	if (keycode == 13)
 		key13(all);
-	if (keycode == 0)
-		key0(all);
-	if (keycode == 2)
-		key2(all);
 	if (keycode == 1)
 		key1(all);
-	if (keycode == 124)
-		key124(all);
-	if (keycode == 123)
-		key123(all);
 	if (keycode == 126)
 		keyup(all);
 	if (keycode == 125)
 		keydown(all);
+	if (keycode == 0)
+		key0(all);
+	if (keycode == 2)
+		key2(all);
+	if (keycode == 124)
+		key124(all);
+	if (keycode == 123)
+		key123(all);
+	return (0);
+}
+
+int	nkey(int keycode, t_all *all)
+{
+	if (keycode == 0)
+		key0(all);
+	if (keycode == 2)
+		key2(all);
+	if (keycode == 124)
+		key124(all);
+	if (keycode == 123)
+		key123(all);
 	return (0);
 }
 
@@ -55,4 +68,24 @@ int	mouse(int x, int y, t_all *all)
 	xx = x;
 	yy = y;
 	return (0);
+}
+
+void	editBuffer(t_all *all, int ***buffer)
+{
+	int i;
+	
+	i = 2;
+	while (++i < 13)
+		(*buffer)[all->size->win_y / 2 - i][all->size->win_x / 2] = 0xFF0000;
+	i = 2;
+	while (++i < 13)
+		(*buffer)[all->size->win_y / 2 + i][all->size->win_x / 2] = 0xFF0000;
+	i = 2;
+	while (++i < 13)
+		(*buffer)[all->size->win_y / 2][all->size->win_x / 2 - i] = 0xFF0000;
+	i = 2;
+	while (++i < 13)
+		(*buffer)[all->size->win_y / 2][all->size->win_x / 2 + i] = 0xFF0000;
+	mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
+		
 }

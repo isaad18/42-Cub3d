@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/13 00:30:45 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/13 16:08:38 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void	direction(t_size *size);
 void	draw_sprites(t_all *all);
 int		key(int keycode, t_all *all);
 void	size_init_half(t_size *size);
+int		nkey(int keycode, t_all *all);
 void	gettexture(t_all *all, int ii);
 void	initdrawing(t_all *all, int x);
 int		mouse(int x, int y, t_all *all);
@@ -148,6 +149,7 @@ void	filldown(t_all *all, int y, int x);
 void	null_maker(t_all *all, t_mlx *mlx);
 void	getwallhit(t_all *all, char **map);
 int		check_wall_collisions_x(t_all *all);
+void	editBuffer(t_all *all, int ***buffer);
 void	mlx_main_loop(t_all *all, char **map);
 void	fill_the_void(t_all *all, int y, int x);
 void	getdrawpos(t_all *all, char **map, int *ii);

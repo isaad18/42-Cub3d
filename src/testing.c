@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:29:44 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/11 17:43:48 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/13 15:45:50 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ void	mlx_main_loop(t_all *all, char **map)
 	size->win_x, all->size->win_y, "cub3d");
 	initimgs(all);
 	print_plz(all, map);
-	mlx_mouse_hook(all->mlx->mlx_win, mouse_hook, all);
+	// mlx_mouse_hook(all->mlx->mlx_win, mouse_hook, all);
+	mlx_hook(all->mlx->mlx_win, 4, (1L << 2), mouse_hook, all);
+	mlx_hook(all->mlx->mlx_win, 5, (1L << 1), mouse_hook, all);
 	mlx_hook(all->mlx->mlx_win, 2, (1L << 0), key, all);
+	// mlx_hook(all->mlx->mlx_win, 2, (1L << 0), nkey, all);
 	mlx_hook(all->mlx->mlx_win, 6, 1L << 6, mouse, all);
 	mlx_hook(all->mlx->mlx_win, 17, 1L << 5, ft_quit, all);
 	mlx_loop(all->mlx->mlx);
