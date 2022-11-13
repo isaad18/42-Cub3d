@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:12 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/11 17:59:52 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/13 18:15:12 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,22 @@ void	extra_imgs(t_all *all)
 			->mlx, all->textures[3], &all->mlx->w, &all->mlx->h);
 	all->mlx->text4 = (int *)mlx_get_data_addr(all->mlx->tex4,
 			&all->mlx->b, &all->mlx->h, &all->mlx->w);
-	all->mlx->tex5 = mlx_xpm_file_to_image(all->mlx->mlx, "Imgs/gun.xpm", &all->mlx->w, &all->mlx->h);
-	all->mlx->tex6 = mlx_xpm_file_to_image(all->mlx->mlx, "Imgs/gunshoot.xpm", &all->mlx->w, &all->mlx->h);
+	all->mlx->tex5 = mlx_xpm_file_to_image(all->mlx->mlx, \
+		"Imgs/gun.xpm", &all->mlx->w, &all->mlx->h);
+	all->mlx->tex6 = mlx_xpm_file_to_image(all->mlx->mlx, \
+		"Imgs/gunshoot.xpm", &all->mlx->w, &all->mlx->h);
 }
 
 int	mouse_hook(int keycode, int x, int y, t_all *all)
 {
 	(void)x;
 	(void)y;
-	if (keycode == 1 && all->flag == 0)
+	if (keycode == 1 && all->flag == 0 && y > 0)
 	{
 		all->flag = 1;
 		print_plz(all, all->map);
 	}
-	else
+	else if (y > 0)
 	{
 		all->flag = 0;
 		print_plz(all, all->map);
@@ -80,9 +82,11 @@ int	mouse_hook(int keycode, int x, int y, t_all *all)
 void	draw_sprites(t_all *all)
 {
 	if (all->flag == 0)
-			mlx_put_image_to_window(all->mlx->mlx,
-				all->mlx->mlx_win, all->mlx->tex5, all->size->win_x / 2, all->size->win_y / 2);
+		mlx_put_image_to_window(all->mlx->mlx,
+			all->mlx->mlx_win, all->mlx->tex5, all->size->\
+				win_x / 2, all->size->win_y / 2);
 	if (all->flag == 1)
 		mlx_put_image_to_window(all->mlx->mlx,
-				all->mlx->mlx_win, all->mlx->tex6, all->size->win_x / 2, all->size->win_y / 2);
+			all->mlx->mlx_win, all->mlx->tex6, all->\
+				size->win_x / 2, all->size->win_y / 2);
 }

@@ -6,7 +6,11 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/11/14 01:36:42 by ytouab           ###   ########.fr       */
+=======
+/*   Updated: 2022/11/13 18:16:30 by isaad            ###   ########.fr       */
+>>>>>>> eaaceb8892972d67902de12aad8eabf453e87d11
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +153,7 @@ void	filldown(t_all *all, int y, int x);
 void	null_maker(t_all *all, t_mlx *mlx);
 void	getwallhit(t_all *all, char **map);
 int		check_wall_collisions_x(t_all *all);
-void	editBuffer(t_all *all, int ***buffer);
+void	editbuffer(t_all *all, int ***buffer);
 void	mlx_main_loop(t_all *all, char **map);
 void	fill_the_void(t_all *all, int y, int x);
 void	getdrawpos(t_all *all, char **map, int *ii);

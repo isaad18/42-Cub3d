@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:34:49 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/13 16:08:49 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/13 18:05:30 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	drawall(t_all *all, int **buffer)
 
 	i = 0;
 	j = 0;
-	editBuffer(all, &buffer);
+	editbuffer(all, &buffer);
 	all->mlx->img = mlx_new_image(all->mlx->mlx,
 			all->size->win_x, all->size->win_y);
 	texture = (int *)mlx_get_data_addr(all->mlx->img, &all->mlx->b,
