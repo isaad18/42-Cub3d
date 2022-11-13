@@ -6,7 +6,7 @@
 /*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 20:26:23 by isaad             #+#    #+#             */
-/*   Updated: 2022/11/13 16:08:25 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/13 18:05:39 by isaad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ int	mouse(int x, int y, t_all *all)
 	return (0);
 }
 
-void	editBuffer(t_all *all, int ***buffer)
+void	editbuffer(t_all *all, int ***buffer)
 {
-	int i;
-	
+	int	i;
+
 	i = 2;
 	while (++i < 13)
 		(*buffer)[all->size->win_y / 2 - i][all->size->win_x / 2] = 0xFF0000;
@@ -87,5 +87,4 @@ void	editBuffer(t_all *all, int ***buffer)
 	while (++i < 13)
 		(*buffer)[all->size->win_y / 2][all->size->win_x / 2 + i] = 0xFF0000;
 	mlx_clear_window(all->mlx->mlx, all->mlx->mlx_win);
-		
 }
