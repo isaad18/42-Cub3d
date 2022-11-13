@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 22:25:07 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/14 01:40:02 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/14 01:53:38 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,3 @@ char	*ft_put_nbr(int nbr, char *base, int sign, int i)
 	ft_putnbr_base(nbr, nbase, num, base);
 	return (num);
 }
-
