@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 16:36:11 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 10:28:51 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/14 01:25:30 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	ft_map_valid_structure(t_all *all, int *i, size_t *nl)
 {
-	while (all->mapl[++(*i)] && *nl < 9)
+	while (all->mapl[++(*i)] && *nl < 7)
 	{
 		if (all->mapl[*i] == '\n')
+			*i = *i + 1;
+		else if (all->mapl[*i] != '\n')
 		{
 			*nl = *nl + 1;
-			if (((*nl == 7 || *nl == 4) && !((all->mapl[*i + 1] == '\n')
-						&& (all->mapl[*i + 2]))) || ((*nl != 7 && *nl != 4)
-					&& ((all->mapl[*i + 1] == '\n') && (all->mapl[*i + 2]))))
-				ft_error(all, 5);
+			while (all->mapl[*i] != '\n')
+				*i = *i + 1;
 		}
 	}
 }

@@ -6,21 +6,28 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 22:25:07 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 22:55:49 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/14 01:40:02 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
 
-void	ft_color_chars_checker(t_all *all, size_t i, size_t a, int comma)
+void	ft_color_chars_init_checker(t_all *all)
 {
-	if (all->colors[a][0] != 'F' || all->colors[1][0] != 'C'
+	if (all->colors[0][0] != 'F' || all->colors[1][0] != 'C'
 		|| all->colors[0][1] != ' ' || all->colors[1][1] != ' ')
 		ft_error(all, 6);
+}
+
+void	ft_color_chars_checker(t_all *all, size_t i, size_t a, int comma)
+{
+	ft_color_chars_init_checker(all);
 	while (a < 2)
 	{
 		comma = 0;
 		i = 2;
+		while (all->colors[a][i] == ' ')
+			i++;
 		while (all->colors[a][i])
 		{
 			if (!ft_isdigit(all->colors[a][i]))
@@ -48,6 +55,8 @@ char	*ft_rgb_to_hex(t_all *all, char *rgb, size_t i)
 
 	color = ft_strdup("");
 	tmp = 255;
+	while (rgb[i] == ' ')
+		i++;
 	while (rgb[i])
 	{
 		tmp = ft_atoi_index(all, rgb, i, 6);
@@ -58,20 +67,6 @@ char	*ft_rgb_to_hex(t_all *all, char *rgb, size_t i)
 			i++;
 	}
 	return (color);
-}
-
-void	ft_color_parse(t_all *all)
-{
-	char	*fc;
-	char	*cc;
-
-	ft_color_chars_checker(all, 2, 0, 0);
-	fc = ft_convert_base(ft_rgb_to_hex(all, all->colors[0], 2), HEX, DEC);
-	cc = ft_convert_base(ft_rgb_to_hex(all, all->colors[1], 2), HEX, DEC);
-	all->mlx->fcolor = ft_atoi_index(all, fc, 0, 6);
-	all->mlx->ccolor = ft_atoi_index(all, cc, 0, 6);
-	free(fc);
-	free(cc);
 }
 
 void	ft_putnbr_base(int nbr, int nbase, char *num_base, char *base)
@@ -111,3 +106,4 @@ char	*ft_put_nbr(int nbr, char *base, int sign, int i)
 	ft_putnbr_base(nbr, nbase, num, base);
 	return (num);
 }
+

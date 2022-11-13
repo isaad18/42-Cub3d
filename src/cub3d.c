@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 20:33:18 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/11 10:29:01 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/14 00:33:25 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	ft_map_checker(t_all *all)
 	ft_read(fd, all);
 	close(fd);
 	all->splmap = ft_split(all->mapl, all);
+	ft_config_sort(all);
+	ft_arr_print(all->splmap);
 	all->textures = ft_arr_dup(all->splmap, 0, 4);
 	all->colors = ft_arr_dup(all->splmap, 4, 2);
 	all->map = ft_arr_dup(all->splmap, 6, ft_arr_len(all->splmap) - 6);

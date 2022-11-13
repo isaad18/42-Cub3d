@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:53:04 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 22:58:26 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/14 01:40:52 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,21 @@ char	**ft_split(char *str, t_all *all)
 	}
 	ret[i] = NULL;
 	return (ret);
+}
+
+int	ft_find_index(t_all *all, char **arr, char *s, size_t size)
+{
+	int	i;
+
+	i = 0;
+	if (!arr)
+		ft_error(all, 5);
+	while (arr[i] && i < 6)
+	{
+		if (!ft_strncmp(arr[i], s, size))
+			return (i);
+		i++;
+	}
+	ft_error(all, 5);
+	return (i);
 }

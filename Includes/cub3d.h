@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaad <isaad@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:13:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/13 16:08:38 by isaad            ###   ########.fr       */
+/*   Updated: 2022/11/14 01:36:42 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ void	ft_map_checker(t_all *all);
 void	ft_map_extension(t_all *all);
 size_t	ft_atoi_index(t_all *all, const char *str, size_t i, int error);
 char	*ft_itoa(int n);
+void	ft_color_chars_init_checker(t_all *all);
 void	ft_color_chars_checker(t_all *all, size_t i, size_t a, int comma);
 char	*ft_rgb_to_hex(t_all *all, char *rgb, size_t i);
 void	ft_color_parse(t_all *all);
@@ -204,5 +205,9 @@ int		ft_quit(t_all *all);
 void	ft_free_all(t_all *all);
 
 void	ft_bzero(void *s, unsigned long n);
+
+char	*ft_line_replace(char *old, char *new);
+int		ft_find_index(t_all *all, char **arr, char *s, size_t size);
+void	ft_config_sort(t_all *all);
 
 #endif
