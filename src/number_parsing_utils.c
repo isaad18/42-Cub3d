@@ -33,7 +33,6 @@ size_t	ft_atoi_index(t_all *all, const char *str, size_t i, int error)
 			ft_error(all, error);
 		nb = nb * 10 + str[i++] - 48;
 	}
-	printf("num: %zu\n", nb);
 	return (nb);
 }
 
