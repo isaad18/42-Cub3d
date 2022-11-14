@@ -6,7 +6,7 @@
 /*   By: ytouab <ytouab@student.42abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 22:15:36 by ytouab            #+#    #+#             */
-/*   Updated: 2022/11/10 22:58:00 by ytouab           ###   ########.fr       */
+/*   Updated: 2022/11/14 18:12:32 by ytouab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ size_t	ft_atoi_index(t_all *all, const char *str, size_t i, int error)
 		|| str[i] == '\f' || str[i] == '\r')
 		i++;
 	while (ft_isdigit(str[i]))
+	{
+		if (nb >= 9223372036854775807)
+			ft_error(all, error);
 		nb = nb * 10 + str[i++] - 48;
-	if (nb >= 9223372036854775807)
-		ft_error(all, error);
+	}
+	printf("num: %zu\n", nb);
 	return (nb);
 }
 
